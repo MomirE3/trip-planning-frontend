@@ -1,14 +1,11 @@
-import { Button, Layout, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { Link, Outlet, useNavigate } from 'react-router'
 import { useAppDispatch } from '../../app/storeHooks'
 import { routes } from '../../config/routes'
 import { clearToken } from '../../features/auth/Login'
 import { tokenStorage } from '../../shared/services/tokenStorage'
+import { BaseButton, BaseLayout, BaseLayoutContent, BaseLayoutHeader, BaseText } from '../../shared/ui'
 import type { AppLayoutNavItem } from './appLayout.types'
-
-const { Header, Content } = Layout
-const { Text } = Typography
 
 const navItems: AppLayoutNavItem[] = [
   {
@@ -29,8 +26,8 @@ export function AppLayout() {
   }
 
   return (
-    <Layout className="app-shell">
-      <Header className="app-header">
+    <BaseLayout className="app-shell">
+      <BaseLayoutHeader className="app-header">
         <Link className="app-logo" to={routes.trips}>
           {t('app.name')}
         </Link>
@@ -43,13 +40,13 @@ export function AppLayout() {
           ))}
         </nav>
 
-        <Button onClick={logout}>{t('layout.logout')}</Button>
-      </Header>
+        <BaseButton onClick={logout}>{t('layout.logout')}</BaseButton>
+      </BaseLayoutHeader>
 
-      <Content className="app-content">
-        <Text type="secondary">{t('layout.protectedArea')}</Text>
+      <BaseLayoutContent className="app-content">
+        <BaseText type="secondary">{t('layout.protectedArea')}</BaseText>
         <Outlet />
-      </Content>
-    </Layout>
+      </BaseLayoutContent>
+    </BaseLayout>
   )
 }

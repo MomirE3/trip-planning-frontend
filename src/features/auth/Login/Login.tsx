@@ -1,56 +1,60 @@
-import { Button, Card, Form, Input, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { routes } from '../../../config/routes'
+import {
+  BaseButton,
+  BaseCard,
+  BaseForm,
+  BaseFormPasswordInput,
+  BaseFormTextInput,
+  BaseText,
+  BaseTitle,
+} from '../../../shared/ui'
 import { useLogin } from './useLogin'
-
-const { Text, Title } = Typography
+import type { LoginFormValues } from './login.types'
 
 export function Login() {
   const { t } = useTranslation()
   const { isSubmitting, submitLogin } = useLogin()
 
   return (
-    <Card className="auth-card">
+    <BaseCard className="auth-card">
       <div className="auth-heading">
-        <Title level={2}>{t('auth.login.title')}</Title>
-        <Text type="secondary">{t('auth.login.description')}</Text>
+        <BaseTitle level={2}>{t('auth.login.title')}</BaseTitle>
+        <BaseText type="secondary">{t('auth.login.description')}</BaseText>
       </div>
 
-      <Form layout="vertical" requiredMark={false} onFinish={submitLogin}>
-        <Form.Item
+      <BaseForm<LoginFormValues> layout="vertical" requiredMark={false} onFinish={submitLogin}>
+        <BaseFormTextInput
+          autoComplete="email"
           label={t('auth.login.email')}
           name="email"
+          placeholder={t('auth.login.emailPlaceholder')}
           rules={[
             { required: true, message: t('auth.login.validation.emailRequired') },
             { type: 'email', message: t('auth.login.validation.emailInvalid') },
           ]}
-        >
-          <Input autoComplete="email" placeholder={t('auth.login.emailPlaceholder')} />
-        </Form.Item>
+        />
 
-        <Form.Item
+        <BaseFormPasswordInput
+          autoComplete="current-password"
           label={t('auth.login.password')}
           name="password"
+          placeholder={t('auth.login.passwordPlaceholder')}
           rules={[
             { required: true, message: t('auth.login.validation.passwordRequired') },
             { min: 6, message: t('auth.login.validation.passwordMin') },
           ]}
-        >
-          <Input.Password
-            autoComplete="current-password"
-            placeholder={t('auth.login.passwordPlaceholder')}
-          />
-        </Form.Item>
+        />
 
-        <Button block htmlType="submit" loading={isSubmitting} type="primary">
+        <BaseButton block htmlType="submit" loading={isSubmitting} type="primary">
           {t('auth.login.submit')}
-        </Button>
-      </Form>
+        </BaseButton>
+      </BaseForm>
 
-      <Text className="auth-footer" type="secondary">
+      <BaseText className="auth-footer" type="secondary">
         {t('auth.login.noAccount')} <Link to={routes.register}>{t('auth.login.registerLink')}</Link>
-      </Text>
-    </Card>
+      </BaseText>
+    </BaseCard>
   )
 }

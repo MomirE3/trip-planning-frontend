@@ -1,78 +1,76 @@
-import { Button, Card, Form, Input, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { routes } from '../../../config/routes'
+import {
+  BaseButton,
+  BaseCard,
+  BaseForm,
+  BaseFormPasswordInput,
+  BaseFormTextInput,
+  BaseText,
+  BaseTitle,
+} from '../../../shared/ui'
 import { useRegister } from './useRegister'
-
-const { Text, Title } = Typography
+import type { RegisterFormValues } from './register.types'
 
 export function Register() {
   const { t } = useTranslation()
   const { isSubmitting, submitRegister } = useRegister()
 
   return (
-    <Card className="auth-card">
+    <BaseCard className="auth-card">
       <div className="auth-heading">
-        <Title level={2}>{t('auth.register.title')}</Title>
-        <Text type="secondary">{t('auth.register.description')}</Text>
+        <BaseTitle level={2}>{t('auth.register.title')}</BaseTitle>
+        <BaseText type="secondary">{t('auth.register.description')}</BaseText>
       </div>
 
-      <Form layout="vertical" requiredMark={false} onFinish={submitRegister}>
-        <Form.Item
+      <BaseForm<RegisterFormValues> layout="vertical" requiredMark={false} onFinish={submitRegister}>
+        <BaseFormTextInput
+          autoComplete="given-name"
           label={t('auth.register.firstName')}
           name="name"
+          placeholder={t('auth.register.firstNamePlaceholder')}
           rules={[{ required: true, message: t('auth.register.validation.firstNameRequired') }]}
-        >
-          <Input
-            autoComplete="given-name"
-            placeholder={t('auth.register.firstNamePlaceholder')}
-          />
-        </Form.Item>
+        />
 
-        <Form.Item
+        <BaseFormTextInput
+          autoComplete="family-name"
           label={t('auth.register.lastName')}
           name="lastname"
+          placeholder={t('auth.register.lastNamePlaceholder')}
           rules={[{ required: true, message: t('auth.register.validation.lastNameRequired') }]}
-        >
-          <Input
-            autoComplete="family-name"
-            placeholder={t('auth.register.lastNamePlaceholder')}
-          />
-        </Form.Item>
+        />
 
-        <Form.Item
+        <BaseFormTextInput
+          autoComplete="email"
           label={t('auth.register.email')}
           name="email"
+          placeholder={t('auth.register.emailPlaceholder')}
           rules={[
             { required: true, message: t('auth.register.validation.emailRequired') },
             { type: 'email', message: t('auth.register.validation.emailInvalid') },
           ]}
-        >
-          <Input autoComplete="email" placeholder={t('auth.register.emailPlaceholder')} />
-        </Form.Item>
+        />
 
-        <Form.Item
+        <BaseFormPasswordInput
+          autoComplete="new-password"
           label={t('auth.register.password')}
           name="password"
+          placeholder={t('auth.register.passwordPlaceholder')}
           rules={[
             { required: true, message: t('auth.register.validation.passwordRequired') },
             { min: 6, message: t('auth.register.validation.passwordMin') },
           ]}
-        >
-          <Input.Password
-            autoComplete="new-password"
-            placeholder={t('auth.register.passwordPlaceholder')}
-          />
-        </Form.Item>
+        />
 
-        <Button block htmlType="submit" loading={isSubmitting} type="primary">
+        <BaseButton block htmlType="submit" loading={isSubmitting} type="primary">
           {t('auth.register.submit')}
-        </Button>
-      </Form>
+        </BaseButton>
+      </BaseForm>
 
-      <Text className="auth-footer" type="secondary">
+      <BaseText className="auth-footer" type="secondary">
         {t('auth.register.hasAccount')} <Link to={routes.login}>{t('auth.register.loginLink')}</Link>
-      </Text>
-    </Card>
+      </BaseText>
+    </BaseCard>
   )
 }

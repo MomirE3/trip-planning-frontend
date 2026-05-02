@@ -1,8 +1,15 @@
-import { Button, Card, Col, Row, Space, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
+import {
+  BaseButton,
+  BaseCard,
+  BaseCol,
+  BaseParagraph,
+  BaseRow,
+  BaseSpace,
+  BaseText,
+  BaseTitle,
+} from '../../../shared/ui'
 import type { DashboardStat } from './dashboard.types'
-
-const { Paragraph, Title } = Typography
 
 const stats: DashboardStat[] = [
   {
@@ -26,24 +33,24 @@ export function Dashboard() {
     <section className="dashboard">
       <div className="dashboard-heading">
         <div>
-          <Title level={1}>{t('dashboard.title')}</Title>
-          <Paragraph type="secondary">{t('dashboard.description')}</Paragraph>
+          <BaseTitle level={1}>{t('dashboard.title')}</BaseTitle>
+          <BaseParagraph type="secondary">{t('dashboard.description')}</BaseParagraph>
         </div>
-        <Button type="primary">{t('dashboard.newTrip')}</Button>
+        <BaseButton type="primary">{t('dashboard.newTrip')}</BaseButton>
       </div>
 
-      <Row gutter={[16, 16]}>
+      <BaseRow gutter={[16, 16]}>
         {stats.map((stat) => (
-          <Col key={stat.labelKey} md={8} xs={24}>
-            <Card>
-              <Space direction="vertical" size={4}>
-                <Typography.Text type="secondary">{t(stat.labelKey)}</Typography.Text>
-                <Typography.Title level={2}>{stat.value}</Typography.Title>
-              </Space>
-            </Card>
-          </Col>
+          <BaseCol key={stat.labelKey} md={8} xs={24}>
+            <BaseCard>
+              <BaseSpace direction="vertical" size={4}>
+                <BaseText type="secondary">{t(stat.labelKey)}</BaseText>
+                <BaseTitle level={2}>{stat.value}</BaseTitle>
+              </BaseSpace>
+            </BaseCard>
+          </BaseCol>
         ))}
-      </Row>
+      </BaseRow>
     </section>
   )
 }

@@ -1,9 +1,9 @@
-import { message } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 import { useAppDispatch } from '../../../app/storeHooks'
 import { routes } from '../../../config/routes'
 import { tokenStorage } from '../../../shared/services/tokenStorage'
+import { baseMessage } from '../../../shared/ui'
 import { getApiErrorMessage } from '../../../shared/utils/getApiErrorMessage'
 import { setToken } from './login.slice'
 import { useLoginMutation } from './login.service'
@@ -21,10 +21,10 @@ export function useLogin() {
 
       tokenStorage.setAccessToken(response.token)
       dispatch(setToken(response.token))
-      message.success(t('auth.login.messages.success'))
+      baseMessage.success(t('auth.login.messages.success'))
       navigate(routes.trips, { replace: true })
     } catch (error) {
-      message.error(getApiErrorMessage(error, t('auth.login.messages.error')))
+      baseMessage.error(getApiErrorMessage(error, t('auth.login.messages.error')))
     }
   }
 
