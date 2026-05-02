@@ -22,22 +22,145 @@ body {
   min-height: 100vh;
 }
 
-.app {
+.auth-page {
   min-height: 100vh;
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.66), rgba(15, 23, 42, 0.54)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=80")
+      center / cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-panel {
+  width: min(100%, 980px);
   display: grid;
-  place-items: center;
-  padding: 32px;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  gap: 32px;
+  align-items: center;
+}
+
+.auth-brand {
+  color: #fff;
+}
+
+.auth-kicker {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.auth-brand h1 {
+  margin: 0;
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.auth-brand p {
+  max-width: 520px;
+  margin: 20px 0 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 18px;
+}
+
+.auth-card {
+  width: 100%;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
+}
+
+.auth-heading {
+  margin-bottom: 24px;
+}
+
+.auth-heading .ant-typography {
+  margin-bottom: 4px;
+}
+
+.auth-footer {
+  display: block;
+  margin-top: 20px;
   text-align: center;
 }
 
-.app h1 {
-  margin: 0;
-  font-size: 48px;
-  font-weight: 600;
+.app-shell {
+  min-height: 100vh;
 }
 
-@media (max-width: 640px) {
-  .app h1 {
-    font-size: 32px;
+.app-header {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding-inline: 24px;
+}
+
+.app-logo {
+  color: #111827;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.app-nav {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+}
+
+.app-nav a {
+  color: #4b5563;
+  text-decoration: none;
+}
+
+.app-content {
+  padding: 32px 24px;
+}
+
+.dashboard {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+}
+
+.dashboard-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.dashboard-heading h1,
+.dashboard .ant-typography {
+  margin-top: 0;
+}
+
+@media (max-width: 760px) {
+  .auth-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-brand h1 {
+    font-size: 40px;
+  }
+
+  .app-header {
+    height: auto;
+    flex-wrap: wrap;
+    padding-block: 16px;
+  }
+
+  .app-nav {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .dashboard-heading {
+    flex-direction: column;
   }
 }
