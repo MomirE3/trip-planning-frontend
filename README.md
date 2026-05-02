@@ -15,6 +15,24 @@ Tema projekta je razvoj web aplikacije za planiranje putovanja. Aplikacija koris
 - Ant Design
 - REST API komunikacija sa backend servisima
 
+## Zahtevane verzije
+
+Projekat je zakljucan na sledece verzije:
+
+```txt
+Node.js: 22.21.0
+npm: 10.9.4
+```
+
+Verzije su definisane u `package.json` kroz `engines`. `.nvmrc` sadrzi Node verziju za lakse prebacivanje okruzenja, a `.npmrc` ukljucuje `engine-strict=true`.
+
+Ako koristite `nvm`:
+
+```bash
+nvm use
+npm install
+```
+
 ## Instalacija dependency-ja
 
 Za routing, globalno stanje i UI biblioteku koristimo:
