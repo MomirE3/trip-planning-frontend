@@ -48,7 +48,7 @@ Zato koristimo **component-based feature arhitekturu**. To znaci da svaki veci e
 - lokalne tipove
 - custom hook
 - service za API pozive ako taj modul komunicira sa backendom
-- Redux slice ili lokalni store fajl ako taj modul ima state koji treba deliti
+- Redux slice samo kada modul ima client state koji treba deliti
 - `index.ts` za javni export
 
 Primer za login:
@@ -62,6 +62,8 @@ Login/
   login.slice.ts
   index.ts
 ```
+
+Za API loading/error state koristimo RTK Query, pa se ne prave rucni thunkovi za obicne server pozive. `login.slice.ts` u ovom primeru postoji samo zato sto auth mora da cuva token u globalnom client state-u.
 
 Ovim se izbegava jedan veliki `auth/types`, `auth/services` ili `auth/store` folder koji brzo postane neuredan.
 
@@ -454,13 +456,11 @@ src/
         loadingState.types.ts
         index.ts
     services/
-      apiClient.ts
+      baseApi.ts
       tokenStorage.ts
-    types/
-      api.types.ts
-      common.types.ts
     utils/
       dateUtils.ts
+      getApiErrorMessage.ts
       moneyUtils.ts
       validationUtils.ts
 
@@ -508,7 +508,7 @@ Admin rute treba da budu zasticene kroz `AdminRoute`.
 
 ## Redux plan
 
-Koristimo Redux Toolkit i React Redux.
+Koristimo Redux Toolkit, React Redux i RTK Query.
 
 Globalni Redux store ide u:
 
@@ -517,13 +517,14 @@ src/app/store.ts
 src/app/storeHooks.ts
 ```
 
-Slice fajl ne mora uvek da bude jedan po velikom feature-u. Kada state pripada konkretnom modulu, slice stoji uz taj modul.
+Za server state koristimo RTK Query. To znaci da loading, error i response state za API pozive dolaze iz generated hookova, bez rucnog `createAsyncThunk` boilerplate-a.
+
+Slice fajl pravimo samo za client state koji zaista treba globalno deliti. Na primer, auth slice cuva token, dok login/register request loading state dolazi iz RTK Query mutation hookova.
 
 Primer:
 
 ```txt
-features/trips/TripList/tripList.slice.ts
-features/trips/TripDetails/tripDetails.slice.ts
+features/auth/Login/login.slice.ts
 features/checklist/Checklist/checklist.slice.ts
 ```
 
@@ -531,11 +532,14 @@ Redux cuva stanje koje je bitno kroz vise komponenti i stranica:
 
 - trenutno ulogovani korisnik
 - access token
-- lista planova
-- trenutno otvoren plan
-- status ucitavanja
-- greske
 - globalne success/error poruke
+
+RTK Query cuva server state:
+
+- API loading state
+- API error state
+- response cache
+- invalidaciju cache-a
 
 Lokalni state ostaje u komponentama za manje UI stvari kao sto su otvoren modal, aktivan tab ili trenutna vrednost inputa pre submit-a.
 
@@ -575,15 +579,21 @@ features/expenses/ExpenseList/expenseList.service.ts
 Zajednicka konfiguracija HTTP klijenta ide u:
 
 ```txt
-src/shared/services/apiClient.ts
+src/shared/services/baseApi.ts
 ```
 
 Taj fajl treba da:
 
 - cita base URL iz `.env`
 - dodaje authorization header ako token postoji
-- obradjuje osnovne API greske
-- vraca tipizovane odgovore
+- konfiguriše RTK Query `baseApi`
+- omoguci da feature service fajlovi dodaju svoje endpoint-e preko `injectEndpoints`
+
+Primer toka:
+
+```txt
+Login.tsx -> useLogin.ts -> useLoginMutation -> login.service.ts -> baseApi
+```
 
 ## Environment konfiguracija
 

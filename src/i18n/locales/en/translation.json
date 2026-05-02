@@ -1,0 +1,75 @@
+{
+  "app": {
+    "name": "Trip Planning",
+    "travelPlanner": "Travel planner"
+  },
+  "auth": {
+    "layout": {
+      "description": "Organize trips, activities, and expenses in one place."
+    },
+    "login": {
+      "title": "Sign in",
+      "description": "Enter your email and password to access the app.",
+      "email": "Email",
+      "emailPlaceholder": "acamomir1@gmail.com",
+      "password": "Password",
+      "passwordPlaceholder": "Password",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Create one",
+      "validation": {
+        "emailRequired": "Email is required.",
+        "emailInvalid": "Enter a valid email.",
+        "passwordRequired": "Password is required.",
+        "passwordMin": "Password must contain at least 6 characters."
+      },
+      "messages": {
+        "success": "You have signed in successfully.",
+        "error": "Login failed."
+      }
+    },
+    "register": {
+      "title": "Create account",
+      "description": "Create an account to plan your trips.",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Momir",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Momirovic",
+      "email": "Email",
+      "emailPlaceholder": "acamomir1@gmail.com",
+      "password": "Password",
+      "passwordPlaceholder": "Password",
+      "submit": "Create account",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Sign in",
+      "validation": {
+        "firstNameRequired": "First name is required.",
+        "lastNameRequired": "Last name is required.",
+        "emailRequired": "Email is required.",
+        "emailInvalid": "Enter a valid email.",
+        "passwordRequired": "Password is required.",
+        "passwordMin": "Password must contain at least 6 characters."
+      },
+      "messages": {
+        "success": "Account created successfully. You can now sign in.",
+        "error": "Registration failed."
+      }
+    }
+  },
+  "layout": {
+    "navigationLabel": "Main navigation",
+    "trips": "Trips",
+    "logout": "Sign out",
+    "protectedArea": "Protected area"
+  },
+  "dashboard": {
+    "title": "Trip plans",
+    "description": "This route is protected. The next step is connecting trip data to the backend.",
+    "newTrip": "New trip",
+    "stats": {
+      "plans": "Plans",
+      "destinations": "Destinations",
+      "activities": "Activities"
+    }
+  }
+}

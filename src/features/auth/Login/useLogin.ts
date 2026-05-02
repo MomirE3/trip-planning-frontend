@@ -1,37 +1,35 @@
 import { message } from 'antd'
-import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 import { useAppDispatch } from '../../../app/storeHooks'
 import { routes } from '../../../config/routes'
-import type { ApiErrorResponse } from '../../../shared/types/api.types'
+import { tokenStorage } from '../../../shared/services/tokenStorage'
+import { getApiErrorMessage } from '../../../shared/utils/getApiErrorMessage'
 import { setToken } from './login.slice'
-import { loginService } from './login.service'
+import { useLoginMutation } from './login.service'
 import type { LoginFormValues } from './login.types'
 
 export function useLogin() {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [login, { isLoading }] = useLoginMutation()
 
   const submitLogin = async (values: LoginFormValues) => {
     try {
-      setIsSubmitting(true)
-      const response = await loginService.login(values)
+      const response = await login(values).unwrap()
 
+      tokenStorage.setAccessToken(response.token)
       dispatch(setToken(response.token))
-      message.success('Uspesno ste se ulogovali.')
+      message.success(t('auth.login.messages.success'))
       navigate(routes.trips, { replace: true })
     } catch (error) {
-      const apiError = error as ApiErrorResponse
-
-      message.error(apiError.message || 'Login nije uspeo.')
-    } finally {
-      setIsSubmitting(false)
+      message.error(getApiErrorMessage(error, t('auth.login.messages.error')))
     }
   }
 
   return {
-    isSubmitting,
+    isSubmitting: isLoading,
     submitLogin,
   }
 }

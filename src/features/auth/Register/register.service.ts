@@ -1,11 +1,16 @@
-import { apiClient } from '../../../shared/services/apiClient'
+import { baseApi } from '../../../shared/services/baseApi'
 import type { RegisterRequestDto, RegisterResponseDto } from './register.types'
 
-export const registerService = {
-  register(payload: RegisterRequestDto) {
-    return apiClient.request<RegisterResponseDto>('/Auth/register', {
-      method: 'POST',
-      body: payload,
-    })
-  },
-}
+export const registerService = baseApi.injectEndpoints({
+  endpoints: (builder) => ({
+    register: builder.mutation<RegisterResponseDto, RegisterRequestDto>({
+      query: (body) => ({
+        url: '/Auth/register',
+        method: 'POST',
+        body,
+      }),
+    }),
+  }),
+})
+
+export const { useRegisterMutation } = registerService

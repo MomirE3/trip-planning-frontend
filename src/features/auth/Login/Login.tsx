@@ -1,4 +1,5 @@
 import { Button, Card, Form, Input, Typography } from 'antd'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { routes } from '../../../config/routes'
 import { useLogin } from './useLogin'
@@ -6,45 +7,49 @@ import { useLogin } from './useLogin'
 const { Text, Title } = Typography
 
 export function Login() {
+  const { t } = useTranslation()
   const { isSubmitting, submitLogin } = useLogin()
 
   return (
     <Card className="auth-card">
       <div className="auth-heading">
-        <Title level={2}>Prijava</Title>
-        <Text type="secondary">Unesite email i lozinku za pristup aplikaciji.</Text>
+        <Title level={2}>{t('auth.login.title')}</Title>
+        <Text type="secondary">{t('auth.login.description')}</Text>
       </div>
 
       <Form layout="vertical" requiredMark={false} onFinish={submitLogin}>
         <Form.Item
-          label="Email"
+          label={t('auth.login.email')}
           name="email"
           rules={[
-            { required: true, message: 'Email je obavezan.' },
-            { type: 'email', message: 'Unesite validan email.' },
+            { required: true, message: t('auth.login.validation.emailRequired') },
+            { type: 'email', message: t('auth.login.validation.emailInvalid') },
           ]}
         >
-          <Input autoComplete="email" placeholder="acamomir1@gmail.com" />
+          <Input autoComplete="email" placeholder={t('auth.login.emailPlaceholder')} />
         </Form.Item>
 
         <Form.Item
-          label="Lozinka"
+          label={t('auth.login.password')}
           name="password"
           rules={[
-            { required: true, message: 'Lozinka je obavezna.' },
-            { min: 6, message: 'Lozinka mora imati najmanje 6 karaktera.' },
+            { required: true, message: t('auth.login.validation.passwordRequired') },
+            { min: 6, message: t('auth.login.validation.passwordMin') },
           ]}
         >
-          <Input.Password autoComplete="current-password" placeholder="Lozinka" />
+          <Input.Password
+            autoComplete="current-password"
+            placeholder={t('auth.login.passwordPlaceholder')}
+          />
         </Form.Item>
 
         <Button block htmlType="submit" loading={isSubmitting} type="primary">
-          Prijavi se
+          {t('auth.login.submit')}
         </Button>
       </Form>
 
       <Text className="auth-footer" type="secondary">
-        Nemate nalog? <Link to={routes.register}>Registrujte se</Link>
+        {t('auth.login.noAccount')} <Link to={routes.register}>{t('auth.login.registerLink')}</Link>
       </Text>
     </Card>
   )

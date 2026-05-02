@@ -1,4 +1,4 @@
 export interface DashboardStat {
-  label: string
+  labelKey: string
   value: string
 }

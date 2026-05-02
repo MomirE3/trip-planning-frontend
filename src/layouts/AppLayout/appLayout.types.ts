@@ -1,4 +1,4 @@
 export interface AppLayoutNavItem {
-  label: string
+  labelKey: string
   path: string
 }
