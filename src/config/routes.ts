@@ -3,4 +3,9 @@ export const routes = {
   login: '/login',
   register: '/register',
   trips: '/trips',
+  tripDetails: '/trips/:tripId',
+}
+
+export const buildRoutes = {
+  tripDetails: (tripId: number | string) => `/trips/${tripId}`,
 }

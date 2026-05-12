@@ -71,5 +71,154 @@
       "destinations": "Destinations",
       "activities": "Activities"
     }
+  },
+  "travelPlanning": {
+    "common": {
+      "actions": "Actions",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "open": "Open",
+      "resetFilters": "Reset filters",
+      "save": "Save"
+    },
+    "travelPlans": {
+      "title": "Trip plans",
+      "description": "Create, filter, and manage your travel plans.",
+      "new": "New trip",
+      "createTitle": "Create trip plan",
+      "editTitle": "Edit trip plan",
+      "deleteConfirm": "Delete this trip plan?",
+      "fields": {
+        "name": "Name",
+        "startDate": "Start date",
+        "endDate": "End date"
+      },
+      "filters": {
+        "name": "Name",
+        "namePlaceholder": "Search trips",
+        "startDate": "Starts after",
+        "endDate": "Ends before"
+      },
+      "messages": {
+        "created": "Trip plan created.",
+        "updated": "Trip plan updated.",
+        "deleted": "Trip plan deleted.",
+        "error": "Trip plan operation failed."
+      },
+      "placeholders": {
+        "name": "Summer vacation"
+      },
+      "stats": {
+        "total": "Total plans",
+        "visible": "Visible after filters",
+        "upcoming": "Upcoming"
+      },
+      "validation": {
+        "name": "Trip name is required.",
+        "startDate": "Start date is required.",
+        "endDate": "End date is required.",
+        "endDateAfterStart": "End date cannot be before start date."
+      }
+    },
+    "travelPlanDetails": {
+      "back": "Back to trips",
+      "title": "Trip details",
+      "loading": "Loading trip plan...",
+      "loadError": "Unable to load this travel plan.",
+      "user": "User"
+    },
+    "destinations": {
+      "title": "Destinations",
+      "new": "Add destination",
+      "createTitle": "Add destination",
+      "editTitle": "Edit destination",
+      "deleteConfirm": "Delete this destination?",
+      "fields": {
+        "name": "Name",
+        "country": "Country"
+      },
+      "filters": {
+        "name": "Name",
+        "namePlaceholder": "Search destinations",
+        "country": "Country",
+        "countryPlaceholder": "Search countries"
+      },
+      "messages": {
+        "created": "Destination added.",
+        "updated": "Destination updated.",
+        "deleted": "Destination deleted.",
+        "error": "Destination operation failed."
+      },
+      "placeholders": {
+        "name": "Barcelona",
+        "country": "Spain"
+      },
+      "validation": {
+        "name": "Destination name is required.",
+        "country": "Country is required."
+      }
+    },
+    "activities": {
+      "title": "Activities",
+      "new": "Add activity",
+      "createTitle": "Add activity",
+      "editTitle": "Edit activity",
+      "deleteConfirm": "Delete this activity?",
+      "fields": {
+        "name": "Name",
+        "date": "Date"
+      },
+      "filters": {
+        "name": "Name",
+        "namePlaceholder": "Search activities",
+        "date": "Date"
+      },
+      "messages": {
+        "created": "Activity added.",
+        "updated": "Activity updated.",
+        "deleted": "Activity deleted.",
+        "error": "Activity operation failed."
+      },
+      "placeholders": {
+        "name": "City walking tour"
+      },
+      "validation": {
+        "name": "Activity name is required.",
+        "date": "Activity date is required."
+      }
+    },
+    "expenses": {
+      "title": "Expenses",
+      "new": "Add expense",
+      "createTitle": "Add expense",
+      "editTitle": "Edit expense",
+      "deleteConfirm": "Delete this expense?",
+      "total": "Filtered total",
+      "fields": {
+        "amount": "Amount",
+        "description": "Description"
+      },
+      "filters": {
+        "description": "Description",
+        "descriptionPlaceholder": "Search expenses",
+        "minAmount": "Min amount",
+        "maxAmount": "Max amount"
+      },
+      "messages": {
+        "created": "Expense added.",
+        "updated": "Expense updated.",
+        "deleted": "Expense deleted.",
+        "error": "Expense operation failed."
+      },
+      "placeholders": {
+        "description": "Hotel reservation"
+      },
+      "validation": {
+        "amount": "Amount is required.",
+        "amountPositive": "Amount cannot be negative.",
+        "description": "Description is required."
+      }
+    }
   }
 }

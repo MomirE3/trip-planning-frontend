@@ -4,6 +4,7 @@ import { tokenStorage } from './tokenStorage'
 
 export const baseApi = createApi({
   reducerPath: 'api',
+  tagTypes: ['TravelPlan', 'TravelPlanFull', 'Destination', 'Activity', 'Expense'],
   baseQuery: fetchBaseQuery({
     baseUrl: env.apiBaseUrl,
     prepareHeaders: (headers) => {

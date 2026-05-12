@@ -122,12 +122,14 @@ body {
   padding: 32px 24px;
 }
 
-.dashboard {
+.dashboard,
+.travel-page {
   width: min(100%, 1120px);
   margin: 0 auto;
 }
 
-.dashboard-heading {
+.dashboard-heading,
+.page-heading {
   display: flex;
   justify-content: space-between;
   gap: 24px;
@@ -136,8 +138,63 @@ body {
 }
 
 .dashboard-heading h1,
-.dashboard .ant-typography {
+.dashboard .ant-typography,
+.page-heading h1,
+.travel-page .ant-typography {
   margin-top: 0;
+}
+
+.page-heading .ant-btn {
+  margin-bottom: 12px;
+}
+
+.table-card {
+  margin-top: 16px;
+}
+
+.table-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(160px, 1fr)) auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+.table-filter {
+  display: grid;
+  gap: 6px;
+}
+
+.table-filter span {
+  color: #4b5563;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.entity-section {
+  padding-top: 8px;
+}
+
+.entity-section-heading {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.entity-section-heading .table-filters {
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.entity-total {
+  color: #374151;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.plan-summary {
+  margin-bottom: 16px;
 }
 
 @media (max-width: 760px) {
@@ -160,7 +217,18 @@ body {
     flex-basis: 100%;
   }
 
-  .dashboard-heading {
+  .dashboard-heading,
+  .page-heading,
+  .entity-section-heading {
     flex-direction: column;
+  }
+
+  .table-filters {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .entity-section-heading .ant-btn {
+    width: 100%;
   }
 }

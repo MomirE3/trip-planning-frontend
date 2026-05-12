@@ -3,7 +3,7 @@ import { routes } from "../config/routes";
 import { Login } from "../features/auth/Login";
 import { ProtectedRoute } from "../features/auth/ProtectedRoute";
 import { Register } from "../features/auth/Register";
-import { Dashboard } from "../features/dashboard/Dashboard";
+import { TravelPlanDetails, TravelPlanList } from "../features/travelPlanning/TravelPlan";
 import { AppLayout } from "../layouts/AppLayout";
 import { AuthLayout } from "../layouts/AuthLayout";
 
@@ -33,7 +33,11 @@ export const router = createBrowserRouter([
           },
           {
             path: routes.trips,
-            element: <Dashboard />,
+            element: <TravelPlanList />,
+          },
+          {
+            path: routes.tripDetails,
+            element: <TravelPlanDetails />,
           },
         ],
       },
