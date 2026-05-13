@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useTableFilters } from '../../shared/hooks'
 import { BaseButton, BaseSpace, baseMessage } from '../../shared/ui'
 import type { BaseTableFilterField } from '../../shared/ui'
+import { formatDate } from '../../shared/utils/date'
 import { getApiErrorMessage } from '../../shared/utils/getApiErrorMessage'
 import { decimalFormatter } from '../../shared/utils/number'
 import {
@@ -26,9 +27,19 @@ export function useExpensesTable(expenses: ExpenseDto[], travelPlanId: number) {
 
   const filterFields: BaseTableFilterField<ExpenseFilters>[] = [
     {
-      label: t('travelPlanning.expenses.filters.description'),
-      name: 'description',
-      placeholder: t('travelPlanning.expenses.filters.descriptionPlaceholder'),
+      label: t('travelPlanning.expenses.filters.name'),
+      name: 'name',
+      placeholder: t('travelPlanning.expenses.filters.namePlaceholder'),
+    },
+    {
+      label: t('travelPlanning.expenses.filters.category'),
+      name: 'category',
+      placeholder: t('travelPlanning.expenses.filters.categoryPlaceholder'),
+    },
+    {
+      label: t('travelPlanning.expenses.filters.date'),
+      name: 'date',
+      type: 'date',
     },
     {
       inputMode: 'decimal',
@@ -65,7 +76,7 @@ export function useExpensesTable(expenses: ExpenseDto[], travelPlanId: number) {
 
   const submitExpense = async (values: ExpenseFormValues) => {
     try {
-      const body = buildExpenseDto(values, travelPlanId, editingExpense?.id)
+      const body = buildExpenseDto(values, travelPlanId)
 
       if (editingExpense) {
         await updateExpense({ id: editingExpense.id, body }).unwrap()
@@ -92,9 +103,20 @@ export function useExpensesTable(expenses: ExpenseDto[], travelPlanId: number) {
 
   const columns: TableProps<ExpenseDto>['columns'] = [
     {
-      dataIndex: 'description',
-      key: 'description',
-      title: t('travelPlanning.expenses.fields.description'),
+      dataIndex: 'name',
+      key: 'name',
+      title: t('travelPlanning.expenses.fields.name'),
+    },
+    {
+      dataIndex: 'category',
+      key: 'category',
+      title: t('travelPlanning.expenses.fields.category'),
+    },
+    {
+      dataIndex: 'date',
+      key: 'date',
+      render: (value: string) => formatDate(value),
+      title: t('travelPlanning.expenses.fields.date'),
     },
     {
       dataIndex: 'amount',

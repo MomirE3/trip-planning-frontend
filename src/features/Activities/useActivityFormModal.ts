@@ -16,7 +16,10 @@ export function useActivityFormModal(open: boolean, initialValues?: ActivityDto 
 
     form.setFieldsValue({
       date: toDateInputValue(initialValues?.date),
+      estimatedCost: initialValues?.estimatedCost ?? 0,
+      location: initialValues?.location ?? '',
       name: initialValues?.name ?? '',
+      status: initialValues?.status ?? '',
     })
   }, [form, initialValues, open])
 
@@ -24,7 +27,17 @@ export function useActivityFormModal(open: boolean, initialValues?: ActivityDto 
     form,
     rules: {
       date: [{ required: true, message: t('travelPlanning.activities.validation.date') }],
+      estimatedCost: [
+        { required: true, message: t('travelPlanning.activities.validation.estimatedCost') },
+        {
+          type: 'number' as const,
+          min: 0,
+          message: t('travelPlanning.activities.validation.estimatedCostPositive'),
+        },
+      ],
+      location: [{ required: true, message: t('travelPlanning.activities.validation.location') }],
       name: [{ required: true, message: t('travelPlanning.activities.validation.name') }],
+      status: [{ required: true, message: t('travelPlanning.activities.validation.status') }],
     },
   }
 }

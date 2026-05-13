@@ -1,6 +1,6 @@
 import { Modal } from 'antd'
 import { useTranslation } from 'react-i18next'
-import { BaseForm, BaseFormTextInput } from '../../shared/ui'
+import { BaseForm, BaseFormNumberInput, BaseFormTextInput } from '../../shared/ui'
 import { useTravelPlanFormModal } from './useTravelPlanFormModal'
 import type { CreateTravelPlanDto, TravelPlanFormModalProps } from './travelPlan.types'
 
@@ -49,6 +49,22 @@ export function TravelPlanFormModal({
           name="endDate"
           rules={rules.endDate}
           type="date"
+        />
+
+        <BaseFormTextInput
+          label={t('travelPlanning.travelPlans.fields.description')}
+          name="description"
+          placeholder={t('travelPlanning.travelPlans.placeholders.description')}
+          rules={rules.description}
+        />
+
+        <BaseFormNumberInput
+          label={t('travelPlanning.travelPlans.fields.budget')}
+          min={0}
+          name="budget"
+          precision={2}
+          rules={rules.budget}
+          style={{ width: '100%' }}
         />
       </BaseForm>
     </Modal>

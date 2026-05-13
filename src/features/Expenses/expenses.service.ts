@@ -1,9 +1,14 @@
 import { travelApi } from '../../shared/services/travelApi'
-import type { ExpenseDto, GetExpensesParams, UpdateExpenseRequest } from './expenses.types'
+import type {
+  ExpenseDto,
+  ExpenseRequestDto,
+  GetExpensesParams,
+  UpdateExpenseRequest,
+} from './expenses.types'
 
 export const expensesService = travelApi.injectEndpoints({
   endpoints: (builder) => ({
-    createExpense: builder.mutation<ExpenseDto, ExpenseDto>({
+    createExpense: builder.mutation<ExpenseDto, ExpenseRequestDto>({
       query: (body) => ({
         url: '/Expenses',
         method: 'POST',

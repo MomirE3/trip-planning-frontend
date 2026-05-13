@@ -1,27 +1,30 @@
 import { includesSearchValue } from '../../shared/utils/filter'
-import type { DestinationDto, DestinationFilters, DestinationFormValues } from './destinations.types'
+import type {
+  DestinationDto,
+  DestinationFilters,
+  DestinationFormValues,
+  DestinationRequestDto,
+} from './destinations.types'
 
 export const emptyDestinationFilters: DestinationFilters = {
-  country: '',
+  location: '',
   name: '',
 }
 
 export function filterDestinations(destinations: DestinationDto[], filters: DestinationFilters) {
   return destinations.filter((destination) => {
     const matchesName = includesSearchValue(destination.name, filters.name)
-    const matchesCountry = includesSearchValue(destination.country, filters.country)
+    const matchesLocation = includesSearchValue(destination.location, filters.location)
 
-    return matchesName && matchesCountry
+    return matchesName && matchesLocation
   })
 }
 
 export function buildDestinationDto(
   values: DestinationFormValues,
   travelPlanId: number,
-  destinationId = 0,
-): DestinationDto {
+): DestinationRequestDto {
   return {
-    id: destinationId,
     travelPlanId,
     ...values,
   }

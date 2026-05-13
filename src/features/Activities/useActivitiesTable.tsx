@@ -7,6 +7,7 @@ import { BaseButton, BaseSpace, baseMessage } from '../../shared/ui'
 import type { BaseTableFilterField } from '../../shared/ui'
 import { formatDate } from '../../shared/utils/date'
 import { getApiErrorMessage } from '../../shared/utils/getApiErrorMessage'
+import { decimalFormatter } from '../../shared/utils/number'
 import {
   useCreateActivityMutation,
   useDeleteActivityMutation,
@@ -35,6 +36,16 @@ export function useActivitiesTable(activities: ActivityDto[], travelPlanId: numb
       name: 'date',
       type: 'date',
     },
+    {
+      label: t('travelPlanning.activities.filters.location'),
+      name: 'location',
+      placeholder: t('travelPlanning.activities.filters.locationPlaceholder'),
+    },
+    {
+      label: t('travelPlanning.activities.filters.status'),
+      name: 'status',
+      placeholder: t('travelPlanning.activities.filters.statusPlaceholder'),
+    },
   ]
 
   const filteredActivities = useMemo(
@@ -59,7 +70,7 @@ export function useActivitiesTable(activities: ActivityDto[], travelPlanId: numb
 
   const submitActivity = async (values: ActivityFormValues) => {
     try {
-      const body = buildActivityDto(values, travelPlanId, editingActivity?.id)
+      const body = buildActivityDto(values, travelPlanId)
 
       if (editingActivity) {
         await updateActivity({ id: editingActivity.id, body }).unwrap()
@@ -95,6 +106,22 @@ export function useActivitiesTable(activities: ActivityDto[], travelPlanId: numb
       key: 'date',
       render: (value: string) => formatDate(value),
       title: t('travelPlanning.activities.fields.date'),
+    },
+    {
+      dataIndex: 'location',
+      key: 'location',
+      title: t('travelPlanning.activities.fields.location'),
+    },
+    {
+      dataIndex: 'estimatedCost',
+      key: 'estimatedCost',
+      render: (value: number) => decimalFormatter.format(value),
+      title: t('travelPlanning.activities.fields.estimatedCost'),
+    },
+    {
+      dataIndex: 'status',
+      key: 'status',
+      title: t('travelPlanning.activities.fields.status'),
     },
     {
       key: 'actions',

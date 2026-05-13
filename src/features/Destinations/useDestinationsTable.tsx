@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useTableFilters } from '../../shared/hooks'
 import { BaseButton, BaseSpace, baseMessage } from '../../shared/ui'
 import type { BaseTableFilterField } from '../../shared/ui'
+import { formatDate } from '../../shared/utils/date'
 import { getApiErrorMessage } from '../../shared/utils/getApiErrorMessage'
 import {
   useCreateDestinationMutation,
@@ -34,9 +35,9 @@ export function useDestinationsTable(destinations: DestinationDto[], travelPlanI
       placeholder: t('travelPlanning.destinations.filters.namePlaceholder'),
     },
     {
-      label: t('travelPlanning.destinations.filters.country'),
-      name: 'country',
-      placeholder: t('travelPlanning.destinations.filters.countryPlaceholder'),
+      label: t('travelPlanning.destinations.filters.location'),
+      name: 'location',
+      placeholder: t('travelPlanning.destinations.filters.locationPlaceholder'),
     },
   ]
 
@@ -62,7 +63,7 @@ export function useDestinationsTable(destinations: DestinationDto[], travelPlanI
 
   const submitDestination = async (values: DestinationFormValues) => {
     try {
-      const body = buildDestinationDto(values, travelPlanId, editingDestination?.id)
+      const body = buildDestinationDto(values, travelPlanId)
 
       if (editingDestination) {
         await updateDestination({ id: editingDestination.id, body }).unwrap()
@@ -94,9 +95,21 @@ export function useDestinationsTable(destinations: DestinationDto[], travelPlanI
       title: t('travelPlanning.destinations.fields.name'),
     },
     {
-      dataIndex: 'country',
-      key: 'country',
-      title: t('travelPlanning.destinations.fields.country'),
+      dataIndex: 'location',
+      key: 'location',
+      title: t('travelPlanning.destinations.fields.location'),
+    },
+    {
+      dataIndex: 'arrivalDate',
+      key: 'arrivalDate',
+      render: (value: string) => formatDate(value),
+      title: t('travelPlanning.destinations.fields.arrivalDate'),
+    },
+    {
+      dataIndex: 'departureDate',
+      key: 'departureDate',
+      render: (value: string) => formatDate(value),
+      title: t('travelPlanning.destinations.fields.departureDate'),
     },
     {
       key: 'actions',

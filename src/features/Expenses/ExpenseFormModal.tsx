@@ -30,6 +30,13 @@ export function ExpenseFormModal({
         onFinish={onSubmit}
         requiredMark={false}
       >
+        <BaseFormTextInput
+          label={t('travelPlanning.expenses.fields.name')}
+          name="name"
+          placeholder={t('travelPlanning.expenses.placeholders.name')}
+          rules={rules.name}
+        />
+
         <BaseFormNumberInput
           label={t('travelPlanning.expenses.fields.amount')}
           min={0}
@@ -40,10 +47,17 @@ export function ExpenseFormModal({
         />
 
         <BaseFormTextInput
-          label={t('travelPlanning.expenses.fields.description')}
-          name="description"
-          placeholder={t('travelPlanning.expenses.placeholders.description')}
-          rules={rules.description}
+          label={t('travelPlanning.expenses.fields.category')}
+          name="category"
+          placeholder={t('travelPlanning.expenses.placeholders.category')}
+          rules={rules.category}
+        />
+
+        <BaseFormTextInput
+          label={t('travelPlanning.expenses.fields.date')}
+          name="date"
+          rules={rules.date}
+          type="date"
         />
       </BaseForm>
     </Modal>

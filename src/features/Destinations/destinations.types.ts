@@ -1,22 +1,34 @@
 export interface DestinationDto {
   id: number
+  arrivalDate: string
+  departureDate: string
+  description: string
+  location: string
   name: string
-  country: string
+  notes: string
+  travelPlanId: number
+}
+
+export interface DestinationFormValues {
+  arrivalDate: string
+  departureDate: string
+  description: string
+  location: string
+  name: string
+  notes: string
+}
+
+export interface DestinationRequestDto extends DestinationFormValues {
   travelPlanId: number
 }
 
 export interface UpdateDestinationRequest {
   id: number
-  body: DestinationDto
-}
-
-export interface DestinationFormValues {
-  country: string
-  name: string
+  body: DestinationRequestDto
 }
 
 export interface DestinationFilters {
-  country: string
+  location: string
   name: string
 }
 

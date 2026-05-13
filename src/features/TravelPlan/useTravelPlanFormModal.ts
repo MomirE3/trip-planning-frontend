@@ -19,6 +19,8 @@ export function useTravelPlanFormModal(open: boolean, initialValues?: TravelPlan
     }
 
     form.setFieldsValue({
+      budget: initialValues?.budget ?? 0,
+      description: initialValues?.description ?? '',
       endDate: toDateInputValue(initialValues?.endDate),
       name: initialValues?.name ?? '',
       startDate: toDateInputValue(initialValues?.startDate),
@@ -28,6 +30,17 @@ export function useTravelPlanFormModal(open: boolean, initialValues?: TravelPlan
   return {
     form,
     rules: {
+      budget: [
+        { required: true, message: t('travelPlanning.travelPlans.validation.budget') },
+        {
+          type: 'number' as const,
+          min: 0,
+          message: t('travelPlanning.travelPlans.validation.budgetPositive'),
+        },
+      ],
+      description: [
+        { required: true, message: t('travelPlanning.travelPlans.validation.description') },
+      ],
       endDate: [
         { required: true, message: t('travelPlanning.travelPlans.validation.endDate') },
         ({ getFieldValue }: FormFieldReader) => ({

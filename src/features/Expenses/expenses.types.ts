@@ -1,7 +1,9 @@
 export interface ExpenseDto {
   id: number
   amount: number
-  description: string
+  category: string
+  date: string
+  name: string
   travelPlanId: number
 }
 
@@ -11,18 +13,26 @@ export interface GetExpensesParams {
 
 export interface UpdateExpenseRequest {
   id: number
-  body: ExpenseDto
+  body: ExpenseRequestDto
 }
 
 export interface ExpenseFormValues {
   amount: number
-  description: string
+  category: string
+  date: string
+  name: string
+}
+
+export interface ExpenseRequestDto extends ExpenseFormValues {
+  travelPlanId: number
 }
 
 export interface ExpenseFilters {
-  description: string
+  category: string
+  date: string
   maxAmount: string
   minAmount: string
+  name: string
 }
 
 export interface ExpenseFormModalProps {

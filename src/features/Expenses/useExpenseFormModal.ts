@@ -1,6 +1,7 @@
 import { Form } from 'antd'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { toDateInputValue } from '../../shared/utils/date'
 import type { ExpenseDto, ExpenseFormValues } from './expenses.types'
 
 export function useExpenseFormModal(open: boolean, initialValues?: ExpenseDto | null) {
@@ -15,7 +16,9 @@ export function useExpenseFormModal(open: boolean, initialValues?: ExpenseDto | 
 
     form.setFieldsValue({
       amount: initialValues?.amount ?? 0,
-      description: initialValues?.description ?? '',
+      category: initialValues?.category ?? '',
+      date: toDateInputValue(initialValues?.date),
+      name: initialValues?.name ?? '',
     })
   }, [form, initialValues, open])
 
@@ -30,9 +33,9 @@ export function useExpenseFormModal(open: boolean, initialValues?: ExpenseDto | 
           message: t('travelPlanning.expenses.validation.amountPositive'),
         },
       ],
-      description: [
-        { required: true, message: t('travelPlanning.expenses.validation.description') },
-      ],
+      category: [{ required: true, message: t('travelPlanning.expenses.validation.category') }],
+      date: [{ required: true, message: t('travelPlanning.expenses.validation.date') }],
+      name: [{ required: true, message: t('travelPlanning.expenses.validation.name') }],
     },
   }
 }

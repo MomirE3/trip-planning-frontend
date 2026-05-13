@@ -1,9 +1,13 @@
 import { travelApi } from '../../shared/services/travelApi'
-import type { DestinationDto, UpdateDestinationRequest } from './destinations.types'
+import type {
+  DestinationDto,
+  DestinationRequestDto,
+  UpdateDestinationRequest,
+} from './destinations.types'
 
 export const destinationsService = travelApi.injectEndpoints({
   endpoints: (builder) => ({
-    createDestination: builder.mutation<DestinationDto, DestinationDto>({
+    createDestination: builder.mutation<DestinationDto, DestinationRequestDto>({
       query: (body) => ({
         url: '/Destinations',
         method: 'POST',

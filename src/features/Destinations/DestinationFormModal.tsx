@@ -38,10 +38,38 @@ export function DestinationFormModal({
         />
 
         <BaseFormTextInput
-          label={t('travelPlanning.destinations.fields.country')}
-          name="country"
-          placeholder={t('travelPlanning.destinations.placeholders.country')}
-          rules={rules.country}
+          label={t('travelPlanning.destinations.fields.location')}
+          name="location"
+          placeholder={t('travelPlanning.destinations.placeholders.location')}
+          rules={rules.location}
+        />
+
+        <BaseFormTextInput
+          label={t('travelPlanning.destinations.fields.arrivalDate')}
+          name="arrivalDate"
+          rules={rules.arrivalDate}
+          type="date"
+        />
+
+        <BaseFormTextInput
+          label={t('travelPlanning.destinations.fields.departureDate')}
+          name="departureDate"
+          rules={rules.departureDate}
+          type="date"
+        />
+
+        <BaseFormTextInput
+          label={t('travelPlanning.destinations.fields.description')}
+          name="description"
+          placeholder={t('travelPlanning.destinations.placeholders.description')}
+          rules={rules.description}
+        />
+
+        <BaseFormTextInput
+          label={t('travelPlanning.destinations.fields.notes')}
+          name="notes"
+          placeholder={t('travelPlanning.destinations.placeholders.notes')}
+          rules={rules.notes}
         />
       </BaseForm>
     </Modal>

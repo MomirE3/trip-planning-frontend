@@ -10,6 +10,7 @@ import {
   BaseTitle,
 } from '../../shared/ui'
 import { formatDate } from '../../shared/utils/date'
+import { decimalFormatter } from '../../shared/utils/number'
 import { ActivitiesTable } from '../Activities'
 import { DestinationsTable } from '../Destinations'
 import { ExpensesTable } from '../Expenses'
@@ -23,7 +24,7 @@ export function TravelPlanDetails() {
     return <Navigate replace to={routes.trips} />
   }
 
-  const travelPlan = data?.travelPlan
+  const travelPlan = data
 
   return (
     <section className="travel-page">
@@ -57,6 +58,14 @@ export function TravelPlanDetails() {
               </BaseText>
               <BaseText>
                 <strong>{t('travelPlanning.travelPlanDetails.user')}:</strong> {travelPlan.userId}
+              </BaseText>
+              <BaseText>
+                <strong>{t('travelPlanning.travelPlans.fields.budget')}:</strong>{' '}
+                {decimalFormatter.format(travelPlan.budget)}
+              </BaseText>
+              <BaseText>
+                <strong>{t('travelPlanning.travelPlans.fields.description')}:</strong>{' '}
+                {travelPlan.description}
               </BaseText>
             </BaseSpace>
           ) : null}

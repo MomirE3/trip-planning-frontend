@@ -1,9 +1,9 @@
 import { travelApi } from '../../shared/services/travelApi'
-import type { ActivityDto, UpdateActivityRequest } from './activities.types'
+import type { ActivityDto, ActivityRequestDto, UpdateActivityRequest } from './activities.types'
 
 export const activitiesService = travelApi.injectEndpoints({
   endpoints: (builder) => ({
-    createActivity: builder.mutation<ActivityDto, ActivityDto>({
+    createActivity: builder.mutation<ActivityDto, ActivityRequestDto>({
       query: (body) => ({
         url: '/Activities',
         method: 'POST',

@@ -3,29 +3,34 @@ import type { DestinationDto } from '../Destinations/destinations.types'
 import type { ExpenseDto } from '../Expenses/expenses.types'
 
 export interface CreateTravelPlanDto {
+  budget: number
+  description: string
+  endDate: string
   name: string
   startDate: string
-  endDate: string
 }
 
 export interface UpdateTravelPlanDto {
+  budget: number
+  description: string
+  endDate: string
   name: string
   startDate: string
-  endDate: string
 }
 
 export interface TravelPlanDto {
   id: number
+  budget: number
+  description: string
+  endDate: string
   name: string
   startDate: string
-  endDate: string
   userId: string
 }
 
-export interface TravelPlanFullDto {
-  travelPlan: TravelPlanDto
-  destinations: DestinationDto[]
+export interface TravelPlanFullDto extends TravelPlanDto {
   activities: ActivityDto[]
+  destinations: DestinationDto[]
   expenses: ExpenseDto[]
 }
 

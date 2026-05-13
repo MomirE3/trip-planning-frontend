@@ -9,6 +9,7 @@ import { BaseButton, BaseSpace, baseMessage } from '../../shared/ui'
 import type { BaseTableFilterField } from '../../shared/ui'
 import { formatDate } from '../../shared/utils/date'
 import { getApiErrorMessage } from '../../shared/utils/getApiErrorMessage'
+import { decimalFormatter } from '../../shared/utils/number'
 import {
   useCreateTravelPlanMutation,
   useDeleteTravelPlanMutation,
@@ -114,6 +115,12 @@ export function useTravelPlanList() {
       key: 'endDate',
       render: (value: string) => formatDate(value),
       title: t('travelPlanning.travelPlans.fields.endDate'),
+    },
+    {
+      dataIndex: 'budget',
+      key: 'budget',
+      render: (value: number) => decimalFormatter.format(value),
+      title: t('travelPlanning.travelPlans.fields.budget'),
     },
     {
       key: 'actions',

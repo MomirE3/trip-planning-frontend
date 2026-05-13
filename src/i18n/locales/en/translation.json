@@ -92,7 +92,9 @@
       "fields": {
         "name": "Name",
         "startDate": "Start date",
-        "endDate": "End date"
+        "endDate": "End date",
+        "description": "Description",
+        "budget": "Budget"
       },
       "filters": {
         "name": "Name",
@@ -107,7 +109,8 @@
         "error": "Trip plan operation failed."
       },
       "placeholders": {
-        "name": "Summer vacation"
+        "name": "Summer vacation",
+        "description": "Family trip through northern Italy"
       },
       "stats": {
         "total": "Total plans",
@@ -118,7 +121,10 @@
         "name": "Trip name is required.",
         "startDate": "Start date is required.",
         "endDate": "End date is required.",
-        "endDateAfterStart": "End date cannot be before start date."
+        "endDateAfterStart": "End date cannot be before start date.",
+        "description": "Description is required.",
+        "budget": "Budget is required.",
+        "budgetPositive": "Budget cannot be negative."
       }
     },
     "travelPlanDetails": {
@@ -136,13 +142,17 @@
       "deleteConfirm": "Delete this destination?",
       "fields": {
         "name": "Name",
-        "country": "Country"
+        "location": "Location",
+        "arrivalDate": "Arrival date",
+        "departureDate": "Departure date",
+        "description": "Description",
+        "notes": "Notes"
       },
       "filters": {
         "name": "Name",
         "namePlaceholder": "Search destinations",
-        "country": "Country",
-        "countryPlaceholder": "Search countries"
+        "location": "Location",
+        "locationPlaceholder": "Search locations"
       },
       "messages": {
         "created": "Destination added.",
@@ -152,11 +162,18 @@
       },
       "placeholders": {
         "name": "Barcelona",
-        "country": "Spain"
+        "location": "Barcelona, Spain",
+        "description": "Historic city center and beach stay",
+        "notes": "Book tickets before arrival"
       },
       "validation": {
         "name": "Destination name is required.",
-        "country": "Country is required."
+        "location": "Location is required.",
+        "arrivalDate": "Arrival date is required.",
+        "departureDate": "Departure date is required.",
+        "departureDateAfterArrival": "Departure date cannot be before arrival date.",
+        "description": "Description is required.",
+        "notes": "Notes are required."
       }
     },
     "activities": {
@@ -167,12 +184,19 @@
       "deleteConfirm": "Delete this activity?",
       "fields": {
         "name": "Name",
-        "date": "Date"
+        "date": "Date",
+        "location": "Location",
+        "estimatedCost": "Estimated cost",
+        "status": "Status"
       },
       "filters": {
         "name": "Name",
         "namePlaceholder": "Search activities",
-        "date": "Date"
+        "date": "Date",
+        "location": "Location",
+        "locationPlaceholder": "Search locations",
+        "status": "Status",
+        "statusPlaceholder": "Search statuses"
       },
       "messages": {
         "created": "Activity added.",
@@ -181,11 +205,17 @@
         "error": "Activity operation failed."
       },
       "placeholders": {
-        "name": "City walking tour"
+        "name": "City walking tour",
+        "location": "Gothic Quarter",
+        "status": "Planned"
       },
       "validation": {
         "name": "Activity name is required.",
-        "date": "Activity date is required."
+        "date": "Activity date is required.",
+        "location": "Location is required.",
+        "estimatedCost": "Estimated cost is required.",
+        "estimatedCostPositive": "Estimated cost cannot be negative.",
+        "status": "Status is required."
       }
     },
     "expenses": {
@@ -196,12 +226,17 @@
       "deleteConfirm": "Delete this expense?",
       "total": "Filtered total",
       "fields": {
+        "name": "Name",
         "amount": "Amount",
-        "description": "Description"
+        "category": "Category",
+        "date": "Date"
       },
       "filters": {
-        "description": "Description",
-        "descriptionPlaceholder": "Search expenses",
+        "name": "Name",
+        "namePlaceholder": "Search expenses",
+        "category": "Category",
+        "categoryPlaceholder": "Search categories",
+        "date": "Date",
         "minAmount": "Min amount",
         "maxAmount": "Max amount"
       },
@@ -212,12 +247,15 @@
         "error": "Expense operation failed."
       },
       "placeholders": {
-        "description": "Hotel reservation"
+        "name": "Hotel reservation",
+        "category": "Accommodation"
       },
       "validation": {
+        "name": "Expense name is required.",
         "amount": "Amount is required.",
         "amountPositive": "Amount cannot be negative.",
-        "description": "Description is required."
+        "category": "Category is required.",
+        "date": "Expense date is required."
       }
     }
   }

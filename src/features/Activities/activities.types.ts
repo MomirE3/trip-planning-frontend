@@ -1,23 +1,35 @@
 export interface ActivityDto {
   id: number
-  name: string
   date: string
+  estimatedCost: number
+  location: string
+  name: string
+  status: string
+  travelPlanId: number
+}
+
+export interface ActivityFormValues {
+  date: string
+  estimatedCost: number
+  location: string
+  name: string
+  status: string
+}
+
+export interface ActivityRequestDto extends ActivityFormValues {
   travelPlanId: number
 }
 
 export interface UpdateActivityRequest {
   id: number
-  body: ActivityDto
-}
-
-export interface ActivityFormValues {
-  date: string
-  name: string
+  body: ActivityRequestDto
 }
 
 export interface ActivityFilters {
   date: string
+  location: string
   name: string
+  status: string
 }
 
 export interface ActivityFormModalProps {
