@@ -2,10 +2,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { env } from '../../config/env'
 import { tokenStorage } from './tokenStorage'
 
-export const baseApi = createApi({
-  reducerPath: 'api',
+export const travelApi = createApi({
+  reducerPath: 'travelApi',
+  tagTypes: ['TravelPlan', 'TravelPlanFull', 'Destination', 'Activity', 'Expense'],
   baseQuery: fetchBaseQuery({
-    baseUrl: env.apiBaseUrl,
+    baseUrl: env.travelApiBaseUrl,
     prepareHeaders: (headers) => {
       const token = tokenStorage.getAccessToken()
 

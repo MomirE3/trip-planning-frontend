@@ -3,7 +3,7 @@ import { routes } from "../config/routes";
 import { Login } from "../features/auth/Login";
 import { ProtectedRoute } from "../features/auth/ProtectedRoute";
 import { Register } from "../features/auth/Register";
-import { TravelPlanDetails, TravelPlanList } from "../features/travelPlanning/TravelPlan";
+import { TravelPlanDetails, TravelPlanList } from "../features/TravelPlan";
 import { AppLayout } from "../layouts/AppLayout";
 import { AuthLayout } from "../layouts/AuthLayout";
 
