@@ -38,10 +38,24 @@ export function ActivityFormModal({
         />
 
         <BaseFormTextInput
+          label={t('travelPlanning.activities.fields.description')}
+          name="description"
+          placeholder={t('travelPlanning.activities.placeholders.description')}
+          rules={rules.description}
+        />
+
+        <BaseFormTextInput
           label={t('travelPlanning.activities.fields.date')}
           name="date"
           rules={rules.date}
           type="date"
+        />
+
+        <BaseFormTextInput
+          label={t('travelPlanning.activities.fields.time')}
+          name="time"
+          rules={rules.time}
+          type="time"
         />
 
         <BaseFormTextInput

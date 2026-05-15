@@ -184,7 +184,9 @@
       "deleteConfirm": "Delete this activity?",
       "fields": {
         "name": "Name",
+        "description": "Description",
         "date": "Date",
+        "time": "Time",
         "location": "Location",
         "estimatedCost": "Estimated cost",
         "status": "Status"
@@ -206,12 +208,15 @@
       },
       "placeholders": {
         "name": "City walking tour",
+        "description": "Guided tour through the old town",
         "location": "Gothic Quarter",
         "status": "Planned"
       },
       "validation": {
         "name": "Activity name is required.",
+        "description": "Description is required.",
         "date": "Activity date is required.",
+        "time": "Time is required.",
         "location": "Location is required.",
         "estimatedCost": "Estimated cost is required.",
         "estimatedCostPositive": "Estimated cost cannot be negative.",

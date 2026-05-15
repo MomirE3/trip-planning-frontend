@@ -1,7 +1,7 @@
 import { Form } from 'antd'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { toDateInputValue } from '../../shared/utils/date'
+import { toDateInputValue, toTimeInputValue } from '../../shared/utils/date'
 import type { ActivityDto, ActivityFormValues } from './activities.types'
 
 export function useActivityFormModal(open: boolean, initialValues?: ActivityDto | null) {
@@ -16,10 +16,12 @@ export function useActivityFormModal(open: boolean, initialValues?: ActivityDto 
 
     form.setFieldsValue({
       date: toDateInputValue(initialValues?.date),
+      description: initialValues?.description ?? '',
       estimatedCost: initialValues?.estimatedCost ?? 0,
       location: initialValues?.location ?? '',
       name: initialValues?.name ?? '',
       status: initialValues?.status ?? '',
+      time: toTimeInputValue(initialValues?.time),
     })
   }, [form, initialValues, open])
 
@@ -27,6 +29,9 @@ export function useActivityFormModal(open: boolean, initialValues?: ActivityDto 
     form,
     rules: {
       date: [{ required: true, message: t('travelPlanning.activities.validation.date') }],
+      description: [
+        { required: true, message: t('travelPlanning.activities.validation.description') },
+      ],
       estimatedCost: [
         { required: true, message: t('travelPlanning.activities.validation.estimatedCost') },
         {
@@ -38,6 +43,7 @@ export function useActivityFormModal(open: boolean, initialValues?: ActivityDto 
       location: [{ required: true, message: t('travelPlanning.activities.validation.location') }],
       name: [{ required: true, message: t('travelPlanning.activities.validation.name') }],
       status: [{ required: true, message: t('travelPlanning.activities.validation.status') }],
+      time: [{ required: true, message: t('travelPlanning.activities.validation.time') }],
     },
   }
 }

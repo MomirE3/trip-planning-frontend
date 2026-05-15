@@ -1,4 +1,5 @@
 import { includesSearchValue } from '../../shared/utils/filter'
+import { toTimeApiValue } from '../../shared/utils/date'
 import type {
   ActivityDto,
   ActivityFilters,
@@ -31,5 +32,6 @@ export function buildActivityDto(
   return {
     travelPlanId,
     ...values,
+    time: toTimeApiValue(values.time),
   }
 }

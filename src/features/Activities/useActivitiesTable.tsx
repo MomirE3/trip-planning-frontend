@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useTableFilters } from '../../shared/hooks'
 import { BaseButton, BaseSpace, baseMessage } from '../../shared/ui'
 import type { BaseTableFilterField } from '../../shared/ui'
-import { formatDate } from '../../shared/utils/date'
+import { formatDate, formatTime } from '../../shared/utils/date'
 import { getApiErrorMessage } from '../../shared/utils/getApiErrorMessage'
 import { decimalFormatter } from '../../shared/utils/number'
 import {
@@ -102,10 +102,21 @@ export function useActivitiesTable(activities: ActivityDto[], travelPlanId: numb
       title: t('travelPlanning.activities.fields.name'),
     },
     {
+      dataIndex: 'description',
+      key: 'description',
+      title: t('travelPlanning.activities.fields.description'),
+    },
+    {
       dataIndex: 'date',
       key: 'date',
       render: (value: string) => formatDate(value),
       title: t('travelPlanning.activities.fields.date'),
+    },
+    {
+      dataIndex: 'time',
+      key: 'time',
+      render: (value: string) => formatTime(value),
+      title: t('travelPlanning.activities.fields.time'),
     },
     {
       dataIndex: 'location',

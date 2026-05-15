@@ -1,19 +1,23 @@
 export interface ActivityDto {
   id: number
   date: string
+  description: string
   estimatedCost: number
   location: string
   name: string
   status: string
+  time: string
   travelPlanId: number
 }
 
 export interface ActivityFormValues {
   date: string
+  description: string
   estimatedCost: number
   location: string
   name: string
   status: string
+  time: string
 }
 
 export interface ActivityRequestDto extends ActivityFormValues {
