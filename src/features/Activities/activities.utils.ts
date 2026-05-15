@@ -1,5 +1,5 @@
 import { includesSearchValue } from '../../shared/utils/filter'
-import { toTimeApiValue } from '../../shared/utils/date'
+import { toDateTimeApiValue } from '../../shared/utils/date'
 import type {
   ActivityDto,
   ActivityFilters,
@@ -17,7 +17,7 @@ export const emptyActivityFilters: ActivityFilters = {
 export function filterActivities(activities: ActivityDto[], filters: ActivityFilters) {
   return activities.filter((activity) => {
     const matchesName = includesSearchValue(activity.name, filters.name)
-    const matchesDate = !filters.date || activity.date.slice(0, 10) === filters.date
+    const matchesDate = !filters.date || activity.time.slice(0, 10) === filters.date
     const matchesLocation = includesSearchValue(activity.location, filters.location)
     const matchesStatus = includesSearchValue(activity.status, filters.status)
 
@@ -31,7 +31,11 @@ export function buildActivityDto(
 ): ActivityRequestDto {
   return {
     travelPlanId,
-    ...values,
-    time: toTimeApiValue(values.time),
+    description: values.description,
+    estimatedCost: values.estimatedCost,
+    location: values.location,
+    name: values.name,
+    status: values.status,
+    time: toDateTimeApiValue(values.time),
   }
 }

@@ -185,8 +185,7 @@
       "fields": {
         "name": "Name",
         "description": "Description",
-        "date": "Date",
-        "time": "Time",
+        "time": "Date & time",
         "location": "Location",
         "estimatedCost": "Estimated cost",
         "status": "Status"
@@ -215,8 +214,7 @@
       "validation": {
         "name": "Activity name is required.",
         "description": "Description is required.",
-        "date": "Activity date is required.",
-        "time": "Time is required.",
+        "dateTime": "Date and time are required.",
         "location": "Location is required.",
         "estimatedCost": "Estimated cost is required.",
         "estimatedCostPositive": "Estimated cost cannot be negative.",

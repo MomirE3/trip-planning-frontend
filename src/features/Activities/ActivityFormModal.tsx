@@ -1,6 +1,6 @@
 import { Modal } from 'antd'
 import { useTranslation } from 'react-i18next'
-import { BaseForm, BaseFormNumberInput, BaseFormTextInput, BaseFormTimeInput } from '../../shared/ui'
+import { BaseForm, BaseFormDateTimeInput, BaseFormNumberInput, BaseFormTextInput } from '../../shared/ui'
 import { useActivityFormModal } from './useActivityFormModal'
 import type { ActivityFormModalProps, ActivityFormValues } from './activities.types'
 
@@ -44,14 +44,7 @@ export function ActivityFormModal({
           rules={rules.description}
         />
 
-        <BaseFormTextInput
-          label={t('travelPlanning.activities.fields.date')}
-          name="date"
-          rules={rules.date}
-          type="date"
-        />
-
-        <BaseFormTimeInput
+        <BaseFormDateTimeInput
           label={t('travelPlanning.activities.fields.time')}
           name="time"
           rules={rules.time}

@@ -1,6 +1,5 @@
 export interface ActivityDto {
   id: number
-  date: string
   description: string
   estimatedCost: number
   location: string
@@ -11,7 +10,6 @@ export interface ActivityDto {
 }
 
 export interface ActivityFormValues {
-  date: string
   description: string
   estimatedCost: number
   location: string
