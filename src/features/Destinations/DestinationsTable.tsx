@@ -5,6 +5,7 @@ import type { DestinationDto, DestinationFilters, DestinationsTableProps } from 
 
 export function DestinationsTable({ destinations, travelPlanId }: DestinationsTableProps) {
   const {
+    canWrite,
     closeForm,
     columns,
     editingDestination,
@@ -33,6 +34,7 @@ export function DestinationsTable({ destinations, travelPlanId }: DestinationsTa
         onResetFilters={resetFilters}
         resetFiltersLabel={t('travelPlanning.common.resetFilters')}
         rowKey="id"
+        showAddButton={canWrite}
       />
 
       <DestinationFormModal

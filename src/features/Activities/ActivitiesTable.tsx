@@ -5,6 +5,7 @@ import type { ActivitiesTableProps, ActivityDto, ActivityFilters } from './activ
 
 export function ActivitiesTable({ activities, travelPlanId }: ActivitiesTableProps) {
   const {
+    canWrite,
     closeForm,
     columns,
     editingActivity,
@@ -33,6 +34,7 @@ export function ActivitiesTable({ activities, travelPlanId }: ActivitiesTablePro
         onResetFilters={resetFilters}
         resetFiltersLabel={t('travelPlanning.common.resetFilters')}
         rowKey="id"
+        showAddButton={canWrite}
       />
 
       <ActivityFormModal

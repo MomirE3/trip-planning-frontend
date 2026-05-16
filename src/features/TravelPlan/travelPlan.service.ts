@@ -38,7 +38,7 @@ export const travelPlanService = travelApi.injectEndpoints({
         url: `/TravelPlan/${id}/full`,
         method: 'GET',
       }),
-      providesTags: ['TravelPlanFull', 'Destination', 'Activity', 'Expense'],
+      providesTags: ['TravelPlanFull', 'Destination', 'Activity', 'Expense', 'Checklist'],
     }),
 
     updateTravelPlan: builder.mutation<void, UpdateTravelPlanRequest>({
@@ -55,7 +55,7 @@ export const travelPlanService = travelApi.injectEndpoints({
         url: `/TravelPlan/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['TravelPlan', 'TravelPlanFull', 'Destination', 'Activity', 'Expense'],
+      invalidatesTags: ['TravelPlan', 'TravelPlanFull', 'Destination', 'Activity', 'Expense', 'Checklist'],
     }),
   }),
 })

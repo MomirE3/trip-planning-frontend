@@ -3,6 +3,7 @@ import { routes } from "../config/routes";
 import { Login } from "../features/auth/Login";
 import { ProtectedRoute } from "../features/auth/ProtectedRoute";
 import { Register } from "../features/auth/Register";
+import { SharedTravelPlanPage } from "../features/Sharing";
 import { TravelPlanDetails, TravelPlanList } from "../features/TravelPlan";
 import { AppLayout } from "../layouts/AppLayout";
 import { AuthLayout } from "../layouts/AuthLayout";
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
     ],
+  },
+  {
+    path: routes.sharedTrip,
+    element: <SharedTravelPlanPage />,
   },
   {
     element: <ProtectedRoute />,

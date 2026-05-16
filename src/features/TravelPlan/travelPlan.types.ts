@@ -1,4 +1,5 @@
 import type { ActivityDto } from '../Activities/activities.types'
+import type { ChecklistItemDto } from '../Checklist/checklist.types'
 import type { DestinationDto } from '../Destinations/destinations.types'
 import type { ExpenseDto } from '../Expenses/expenses.types'
 
@@ -30,6 +31,7 @@ export interface TravelPlanDto {
 
 export interface TravelPlanFullDto extends TravelPlanDto {
   activities: ActivityDto[]
+  checklist: ChecklistItemDto[]
   destinations: DestinationDto[]
   expenses: ExpenseDto[]
 }

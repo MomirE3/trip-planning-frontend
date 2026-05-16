@@ -2,6 +2,7 @@ import { Popconfirm } from 'antd'
 import type { TableProps } from 'antd'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useShareAccess } from '../../shared/contexts/ShareAccessContext'
 import { useTableFilters } from '../../shared/hooks'
 import { BaseButton, BaseSpace, baseMessage } from '../../shared/ui'
 import type { BaseTableFilterField } from '../../shared/ui'
@@ -19,6 +20,7 @@ import { useExpenseCategoryLabel, useExpenseCategoryOptions } from './useExpense
 
 export function useExpensesTable(expenses: ExpenseDto[], travelPlanId: number) {
   const { t } = useTranslation()
+  const { canWrite } = useShareAccess()
   const { filters, resetFilters, updateFilter } = useTableFilters(emptyExpenseFilters)
   const [editingExpense, setEditingExpense] = useState<ExpenseDto | null>(null)
   const [isFormOpen, setIsFormOpen] = useState(false)
@@ -130,30 +132,35 @@ export function useExpensesTable(expenses: ExpenseDto[], travelPlanId: number) {
       render: (value: number) => decimalFormatter.format(value),
       title: t('travelPlanning.expenses.fields.amount'),
     },
-    {
-      key: 'actions',
-      render: (_, expense) => (
-        <BaseSpace>
-          <BaseButton onClick={() => openEditForm(expense)} type="link">
-            {t('travelPlanning.common.edit')}
-          </BaseButton>
-          <Popconfirm
-            cancelText={t('travelPlanning.common.cancel')}
-            okText={t('travelPlanning.common.delete')}
-            onConfirm={() => removeExpense(expense.id)}
-            title={t('travelPlanning.expenses.deleteConfirm')}
-          >
-            <BaseButton danger loading={isDeleting} type="link">
-              {t('travelPlanning.common.delete')}
-            </BaseButton>
-          </Popconfirm>
-        </BaseSpace>
-      ),
-      title: t('travelPlanning.common.actions'),
-    },
+    ...(canWrite
+      ? [
+          {
+            key: 'actions',
+            render: (_: unknown, expense: ExpenseDto) => (
+              <BaseSpace>
+                <BaseButton onClick={() => openEditForm(expense)} type="link">
+                  {t('travelPlanning.common.edit')}
+                </BaseButton>
+                <Popconfirm
+                  cancelText={t('travelPlanning.common.cancel')}
+                  okText={t('travelPlanning.common.delete')}
+                  onConfirm={() => removeExpense(expense.id)}
+                  title={t('travelPlanning.expenses.deleteConfirm')}
+                >
+                  <BaseButton danger loading={isDeleting} type="link">
+                    {t('travelPlanning.common.delete')}
+                  </BaseButton>
+                </Popconfirm>
+              </BaseSpace>
+            ),
+            title: t('travelPlanning.common.actions'),
+          },
+        ]
+      : []),
   ]
 
   return {
+    canWrite,
     closeForm,
     columns,
     editingExpense,

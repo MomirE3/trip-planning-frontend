@@ -13,5 +13,6 @@ export interface EntityTableSectionProps<TRecord extends object, TFilters extend
   onResetFilters: () => void
   resetFiltersLabel: string
   rowKey: TableProps<TRecord>['rowKey']
+  showAddButton?: boolean
   summary?: ReactNode
 }

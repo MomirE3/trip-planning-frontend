@@ -197,6 +197,61 @@ body {
   margin-bottom: 16px;
 }
 
+.checklist-panel {
+  padding-top: 8px;
+}
+
+.checklist-summary {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.checklist-add {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.checklist-add .ant-input {
+  flex: 1;
+}
+
+.checklist-item-completed {
+  color: #6b7280;
+  text-decoration: line-through;
+}
+
+.sharing-panel {
+  padding-top: 8px;
+}
+
+.sharing-create {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+  max-width: 420px;
+}
+
+.sharing-field {
+  display: grid;
+  gap: 6px;
+}
+
+.sharing-field span {
+  color: #4b5563;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sharing-field input,
+.sharing-field .ant-select {
+  width: 100%;
+}
+
+.shared-trip-page .shared-trip-alert {
+  margin-bottom: 16px;
+}
+
 @media (max-width: 760px) {
   .auth-panel {
     grid-template-columns: 1fr;

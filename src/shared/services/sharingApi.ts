@@ -1,24 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { env } from '../../config/env'
-import { shareTokenStorage } from './shareTokenStorage'
 import { tokenStorage } from './tokenStorage'
 
-export const travelApi = createApi({
-  reducerPath: 'travelApi',
-  tagTypes: ['TravelPlan', 'TravelPlanFull', 'Destination', 'Activity', 'Expense', 'Checklist'],
+export const sharingApi = createApi({
+  reducerPath: 'sharingApi',
+  tagTypes: ['ShareToken'],
   baseQuery: fetchBaseQuery({
-    baseUrl: env.travelApiBaseUrl,
+    baseUrl: env.sharingApiBaseUrl,
     prepareHeaders: (headers) => {
       const token = tokenStorage.getAccessToken()
 
       if (token) {
         headers.set('Authorization', `Bearer ${token}`)
-      }
-
-      const shareToken = shareTokenStorage.getShareToken()
-
-      if (shareToken) {
-        headers.set('X-Share-Token', shareToken)
       }
 
       return headers

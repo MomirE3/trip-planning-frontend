@@ -5,6 +5,7 @@ import type { ExpenseDto, ExpenseFilters, ExpensesTableProps } from './expenses.
 
 export function ExpensesTable({ expenses, travelPlanId }: ExpensesTableProps) {
   const {
+    canWrite,
     closeForm,
     columns,
     editingExpense,
@@ -34,6 +35,7 @@ export function ExpensesTable({ expenses, travelPlanId }: ExpensesTableProps) {
         onResetFilters={resetFilters}
         resetFiltersLabel={t('travelPlanning.common.resetFilters')}
         rowKey="id"
+        showAddButton={canWrite}
         summary={summary}
       />
 

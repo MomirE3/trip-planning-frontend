@@ -262,7 +262,55 @@
         "date": "Expense date is required."
       }
     },
+    "checklist": {
+      "title": "Checklist",
+      "add": "Add item",
+      "empty": "No checklist items yet.",
+      "deleteConfirm": "Delete this checklist item?",
+      "progress": "{{completed}} / {{total}} completed",
+      "placeholders": {
+        "content": "Pack passport, charger, tickets..."
+      },
+      "messages": {
+        "created": "Checklist item added.",
+        "deleted": "Checklist item deleted.",
+        "error": "Checklist operation failed."
+      }
+    },
+    "sharing": {
+      "title": "Sharing",
+      "description": "Create share links so others can view or edit this trip.",
+      "createLink": "Create and copy link",
+      "copyLink": "Copy link",
+      "revoke": "Revoke",
+      "revokeConfirm": "Revoke this share link?",
+      "empty": "No active share links.",
+      "createdAt": "Created",
+      "expiresAt": "Expires",
+      "fields": {
+        "accessType": "Access",
+        "expiresAt": "Expires at (optional)"
+      },
+      "messages": {
+        "created": "Share link created and copied.",
+        "copied": "Share link copied.",
+        "copyError": "Unable to copy link.",
+        "revoked": "Share link revoked.",
+        "error": "Sharing operation failed."
+      }
+    },
+    "sharedTrip": {
+      "validating": "Validating share link...",
+      "invalidTitle": "Invalid share link",
+      "invalidDescription": "This link is invalid or has expired.",
+      "viewAccess": "You are viewing a shared trip (read only).",
+      "editAccess": "You are editing a shared trip."
+    },
     "enums": {
+      "accessType": {
+        "View": "View only",
+        "Edit": "Can edit"
+      },
       "activityStatus": {
         "Planned": "Planned",
         "Reserved": "Reserved",

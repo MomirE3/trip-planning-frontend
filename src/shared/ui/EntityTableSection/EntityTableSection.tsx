@@ -15,6 +15,7 @@ export function EntityTableSection<TRecord extends object, TFilters extends obje
   onResetFilters,
   resetFiltersLabel,
   rowKey,
+  showAddButton = true,
   summary,
 }: EntityTableSectionProps<TRecord, TFilters>) {
   return (
@@ -27,9 +28,11 @@ export function EntityTableSection<TRecord extends object, TFilters extends obje
           resetLabel={resetFiltersLabel}
           values={filters}
         />
-        <BaseButton onClick={onAdd} type="primary">
-          {addButtonLabel}
-        </BaseButton>
+        {showAddButton ? (
+          <BaseButton onClick={onAdd} type="primary">
+            {addButtonLabel}
+          </BaseButton>
+        ) : null}
       </div>
 
       {summary ? <div className="entity-total">{summary}</div> : null}

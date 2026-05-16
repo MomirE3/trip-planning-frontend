@@ -3,11 +3,11 @@ import { useNavigate, useParams } from 'react-router'
 import { routes } from '../../config/routes'
 import { useGetTravelPlanFullQuery } from './travelPlan.service'
 
-export function useTravelPlanDetails() {
+export function useTravelPlanDetails(overrideTravelPlanId?: number) {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { tripId } = useParams<{ tripId: string }>()
-  const travelPlanId = Number(tripId)
+  const travelPlanId = overrideTravelPlanId ?? Number(tripId)
   const isValidTravelPlanId = Number.isFinite(travelPlanId)
   const query = useGetTravelPlanFullQuery(travelPlanId, {
     skip: !isValidTravelPlanId,
