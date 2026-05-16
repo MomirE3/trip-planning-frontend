@@ -300,6 +300,7 @@
       }
     },
     "sharedTrip": {
+      "badge": "Shared trip",
       "validating": "Validating share link...",
       "invalidTitle": "Invalid share link",
       "invalidDescription": "This link is invalid or has expired.",

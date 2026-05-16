@@ -252,6 +252,15 @@ body {
   margin-bottom: 16px;
 }
 
+.shared-trip-badge {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+.shared-trip-content {
+  padding-top: 16px;
+}
+
 @media (max-width: 760px) {
   .auth-panel {
     grid-template-columns: 1fr;

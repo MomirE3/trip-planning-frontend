@@ -50,6 +50,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <Navigate to={routes.trips} replace />,
+    element: <Navigate to={routes.login} replace />,
   },
 ]);
