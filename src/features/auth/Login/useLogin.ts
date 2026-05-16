@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { useAppDispatch } from '../../../app/storeHooks'
 import { routes } from '../../../config/routes'
 import { tokenStorage } from '../../../shared/services/tokenStorage'
 import { baseMessage } from '../../../shared/ui'
 import { getApiErrorMessage } from '../../../shared/utils/getApiErrorMessage'
+import type { ProtectedRouteState } from '../ProtectedRoute/protectedRoute.types'
 import { setToken } from './login.slice'
 import { useLoginMutation } from './login.service'
 import type { LoginFormValues } from './login.types'
@@ -13,6 +14,7 @@ export function useLogin() {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
   const [login, { isLoading }] = useLoginMutation()
 
   const submitLogin = async (values: LoginFormValues) => {
@@ -22,7 +24,11 @@ export function useLogin() {
       tokenStorage.setAccessToken(response.token)
       dispatch(setToken(response.token))
       baseMessage.success(t('auth.login.messages.success'))
-      navigate(routes.trips, { replace: true })
+
+      const redirectTo =
+        (location.state as ProtectedRouteState | null)?.from ?? routes.trips
+
+      navigate(redirectTo, { replace: true })
     } catch (error) {
       baseMessage.error(getApiErrorMessage(error, t('auth.login.messages.error')))
     }

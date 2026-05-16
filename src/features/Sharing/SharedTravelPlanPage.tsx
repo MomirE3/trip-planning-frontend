@@ -2,7 +2,9 @@ import { Alert, Spin } from 'antd'
 import { useEffect, useLayoutEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate, useParams } from 'react-router'
-import { routes } from '../../config/routes'
+import { useAppSelector } from '../../app/storeHooks'
+import { buildRoutes, routes } from '../../config/routes'
+import type { ProtectedRouteState } from '../auth/ProtectedRoute/protectedRoute.types'
 import { SharedTripLayout } from '../../layouts/SharedTripLayout'
 import { ShareAccessProvider } from '../../shared/contexts/ShareAccessContext'
 import { shareTokenStorage } from '../../shared/services/shareTokenStorage'
@@ -18,6 +20,8 @@ function isEditAccess(accessType: string) {
 export function SharedTravelPlanPage() {
   const { t } = useTranslation()
   const { shareToken = '' } = useParams<{ shareToken: string }>()
+  const authToken = useAppSelector((state) => state.auth.token)
+  const isAuthenticated = Boolean(authToken)
 
   useLayoutEffect(() => {
     if (!shareToken) {
@@ -71,7 +75,17 @@ export function SharedTravelPlanPage() {
     )
   }
 
-  const canWrite = isEditAccess(data.accessType)
+  const requiresLogin = isEditAccess(data.accessType)
+
+  if (requiresLogin && !isAuthenticated) {
+    const loginState: ProtectedRouteState = {
+      from: buildRoutes.sharedTrip(shareToken),
+    }
+
+    return <Navigate replace state={loginState} to={routes.login} />
+  }
+
+  const canWrite = requiresLogin && isAuthenticated
 
   return (
     <ShareAccessProvider canWrite={canWrite} isSharedView>
