@@ -12,8 +12,8 @@ export interface ShareTokenDto {
 
 export interface CreateShareTokenRequest {
   travelPlanId: number
-  accessType: AccessType
-  expiresAt?: string | null
+  accessType: number
+  expiresAt?: string
 }
 
 export interface ValidateShareTokenResponse {

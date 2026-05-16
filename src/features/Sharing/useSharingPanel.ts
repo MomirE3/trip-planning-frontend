@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next'
 import type { AccessType } from '../../shared/constants/accessType'
 import { buildRoutes } from '../../config/routes'
 import { baseMessage } from '../../shared/ui'
-import { toDateTimeApiValue } from '../../shared/utils/date'
 import { getApiErrorMessage } from '../../shared/utils/getApiErrorMessage'
+import { buildCreateShareTokenRequest } from './sharing.utils'
 import {
   useCreateShareTokenMutation,
   useGetShareTokensQuery,
@@ -23,11 +23,9 @@ export function useSharingPanel(travelPlanId: number) {
 
   const createShareLink = async () => {
     try {
-      const created = await createToken({
-        accessType,
-        expiresAt: expiresAt ? toDateTimeApiValue(expiresAt.replace('T', ' ')) : null,
-        travelPlanId,
-      }).unwrap()
+      const created = await createToken(
+        buildCreateShareTokenRequest(travelPlanId, accessType, expiresAt),
+      ).unwrap()
 
       const shareUrl = `${window.location.origin}${buildRoutes.sharedTrip(created.token)}`
       await navigator.clipboard.writeText(shareUrl)
