@@ -132,7 +132,8 @@
       "title": "Trip details",
       "loading": "Loading trip plan...",
       "loadError": "Unable to load this travel plan.",
-      "user": "User"
+      "spent": "Spent",
+      "remaining": "Remaining"
     },
     "destinations": {
       "title": "Destinations",

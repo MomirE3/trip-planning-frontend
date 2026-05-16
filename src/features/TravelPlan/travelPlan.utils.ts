@@ -1,5 +1,14 @@
 import { includesSearchValue } from '../../shared/utils/filter'
+import { sumExpenses } from '../Expenses/expenses.utils'
+import type { ExpenseDto } from '../Expenses/expenses.types'
 import type { TravelPlanDto, TravelPlanFilters } from './travelPlan.types'
+
+export function getBudgetSummary(budget: number, expenses: ExpenseDto[]) {
+  const spent = sumExpenses(expenses)
+  const remaining = budget - spent
+
+  return { remaining, spent }
+}
 
 export const emptyTravelPlanFilters: TravelPlanFilters = {
   endDate: '',

@@ -15,6 +15,7 @@ import { ActivitiesTable } from '../Activities'
 import { DestinationsTable } from '../Destinations'
 import { ExpensesTable } from '../Expenses'
 import { useTravelPlanDetails } from './useTravelPlanDetails'
+import { getBudgetSummary } from './travelPlan.utils'
 
 export function TravelPlanDetails() {
   const { data, error, goBack, isFetching, isValidTravelPlanId, t, travelPlanId } =
@@ -25,6 +26,9 @@ export function TravelPlanDetails() {
   }
 
   const travelPlan = data
+  const budgetSummary = travelPlan
+    ? getBudgetSummary(travelPlan.budget, data?.expenses ?? [])
+    : null
 
   return (
     <section className="travel-page">
@@ -57,11 +61,16 @@ export function TravelPlanDetails() {
                 {formatDate(travelPlan.endDate)}
               </BaseText>
               <BaseText>
-                <strong>{t('travelPlanning.travelPlanDetails.user')}:</strong> {travelPlan.userId}
-              </BaseText>
-              <BaseText>
                 <strong>{t('travelPlanning.travelPlans.fields.budget')}:</strong>{' '}
                 {decimalFormatter.format(travelPlan.budget)}
+              </BaseText>
+              <BaseText>
+                <strong>{t('travelPlanning.travelPlanDetails.spent')}:</strong>{' '}
+                {decimalFormatter.format(budgetSummary?.spent ?? 0)}
+              </BaseText>
+              <BaseText type={budgetSummary && budgetSummary.remaining < 0 ? 'danger' : undefined}>
+                <strong>{t('travelPlanning.travelPlanDetails.remaining')}:</strong>{' '}
+                {decimalFormatter.format(budgetSummary?.remaining ?? 0)}
               </BaseText>
               <BaseText>
                 <strong>{t('travelPlanning.travelPlans.fields.description')}:</strong>{' '}
