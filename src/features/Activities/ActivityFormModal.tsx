@@ -1,7 +1,14 @@
 import { Modal } from 'antd'
 import { useTranslation } from 'react-i18next'
-import { BaseForm, BaseFormDateTimeInput, BaseFormNumberInput, BaseFormTextInput } from '../../shared/ui'
+import {
+  BaseForm,
+  BaseFormDateTimeInput,
+  BaseFormNumberInput,
+  BaseFormSelect,
+  BaseFormTextInput,
+} from '../../shared/ui'
 import { useActivityFormModal } from './useActivityFormModal'
+import { useActivityStatusOptions } from './useActivityStatusOptions'
 import type { ActivityFormModalProps, ActivityFormValues } from './activities.types'
 
 export function ActivityFormModal({
@@ -14,6 +21,7 @@ export function ActivityFormModal({
 }: ActivityFormModalProps) {
   const { t } = useTranslation()
   const { form, rules } = useActivityFormModal(open, initialValues)
+  const statusOptions = useActivityStatusOptions()
 
   return (
     <Modal
@@ -66,9 +74,10 @@ export function ActivityFormModal({
           style={{ width: '100%' }}
         />
 
-        <BaseFormTextInput
+        <BaseFormSelect
           label={t('travelPlanning.activities.fields.status')}
           name="status"
+          options={statusOptions}
           placeholder={t('travelPlanning.activities.placeholders.status')}
           rules={rules.status}
         />

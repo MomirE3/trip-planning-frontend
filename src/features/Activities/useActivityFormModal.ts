@@ -1,6 +1,7 @@
 import { Form } from 'antd'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { DEFAULT_ACTIVITY_STATUS } from '../../shared/constants/activityStatus'
 import { toDateTimeInputValue } from '../../shared/utils/date'
 import type { ActivityDto, ActivityFormValues } from './activities.types'
 
@@ -19,7 +20,7 @@ export function useActivityFormModal(open: boolean, initialValues?: ActivityDto 
       estimatedCost: initialValues?.estimatedCost ?? 0,
       location: initialValues?.location ?? '',
       name: initialValues?.name ?? '',
-      status: initialValues?.status ?? '',
+      status: initialValues?.status ?? DEFAULT_ACTIVITY_STATUS,
       time: toDateTimeInputValue(initialValues?.time),
     })
   }, [form, initialValues, open])

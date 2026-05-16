@@ -1,7 +1,9 @@
+import type { ExpenseCategory } from '../../shared/constants/expenseCategory'
+
 export interface ExpenseDto {
   id: number
   amount: number
-  category: string
+  category: ExpenseCategory
   date: string
   name: string
   travelPlanId: number
@@ -18,7 +20,7 @@ export interface UpdateExpenseRequest {
 
 export interface ExpenseFormValues {
   amount: number
-  category: string
+  category: ExpenseCategory
   date: string
   name: string
 }

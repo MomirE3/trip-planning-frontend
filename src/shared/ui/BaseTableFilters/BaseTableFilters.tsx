@@ -1,4 +1,4 @@
-import { Button, Input } from 'antd'
+import { Button, Input, Select } from 'antd'
 import type { ChangeEvent } from 'react'
 import type { BaseTableFiltersProps } from './baseTableFilters.types'
 
@@ -25,14 +25,25 @@ export function BaseTableFilters<TValues extends object>({
       {fields.map((field) => (
         <label className="table-filter" key={field.name}>
           <span>{field.label}</span>
-          <Input
-            allowClear
-            inputMode={field.inputMode}
-            onChange={updateValue(field.name)}
-            placeholder={field.placeholder}
-            type={field.type ?? 'text'}
-            value={getValue(field.name)}
-          />
+          {field.type === 'select' ? (
+            <Select
+              allowClear
+              onChange={(value) => onChange(field.name, value ?? '')}
+              options={field.options}
+              placeholder={field.placeholder}
+              style={{ width: '100%' }}
+              value={getValue(field.name) || undefined}
+            />
+          ) : (
+            <Input
+              allowClear
+              inputMode={field.inputMode}
+              onChange={updateValue(field.name)}
+              placeholder={field.placeholder}
+              type={field.type ?? 'text'}
+              value={getValue(field.name)}
+            />
+          )}
         </label>
       ))}
 

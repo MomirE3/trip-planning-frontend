@@ -1,7 +1,8 @@
 import { Modal } from 'antd'
 import { useTranslation } from 'react-i18next'
-import { BaseForm, BaseFormNumberInput, BaseFormTextInput } from '../../shared/ui'
+import { BaseForm, BaseFormNumberInput, BaseFormSelect, BaseFormTextInput } from '../../shared/ui'
 import { useExpenseFormModal } from './useExpenseFormModal'
+import { useExpenseCategoryOptions } from './useExpenseCategoryOptions'
 import type { ExpenseFormModalProps, ExpenseFormValues } from './expenses.types'
 
 export function ExpenseFormModal({
@@ -14,6 +15,7 @@ export function ExpenseFormModal({
 }: ExpenseFormModalProps) {
   const { t } = useTranslation()
   const { form, rules } = useExpenseFormModal(open, initialValues)
+  const categoryOptions = useExpenseCategoryOptions()
 
   return (
     <Modal
@@ -46,9 +48,10 @@ export function ExpenseFormModal({
           style={{ width: '100%' }}
         />
 
-        <BaseFormTextInput
+        <BaseFormSelect
           label={t('travelPlanning.expenses.fields.category')}
           name="category"
+          options={categoryOptions}
           placeholder={t('travelPlanning.expenses.placeholders.category')}
           rules={rules.category}
         />

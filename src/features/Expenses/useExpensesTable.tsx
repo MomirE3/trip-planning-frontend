@@ -15,6 +15,7 @@ import {
 } from './expenses.service'
 import type { ExpenseDto, ExpenseFilters, ExpenseFormValues } from './expenses.types'
 import { buildExpenseDto, emptyExpenseFilters, filterExpenses, sumExpenses } from './expenses.utils'
+import { useExpenseCategoryLabel, useExpenseCategoryOptions } from './useExpenseCategoryOptions'
 
 export function useExpensesTable(expenses: ExpenseDto[], travelPlanId: number) {
   const { t } = useTranslation()
@@ -24,6 +25,8 @@ export function useExpensesTable(expenses: ExpenseDto[], travelPlanId: number) {
   const [createExpense, { isLoading: isCreating }] = useCreateExpenseMutation()
   const [updateExpense, { isLoading: isUpdating }] = useUpdateExpenseMutation()
   const [deleteExpense, { isLoading: isDeleting }] = useDeleteExpenseMutation()
+  const categoryOptions = useExpenseCategoryOptions()
+  const getExpenseCategoryLabel = useExpenseCategoryLabel()
 
   const filterFields: BaseTableFilterField<ExpenseFilters>[] = [
     {
@@ -34,7 +37,9 @@ export function useExpensesTable(expenses: ExpenseDto[], travelPlanId: number) {
     {
       label: t('travelPlanning.expenses.filters.category'),
       name: 'category',
+      options: categoryOptions,
       placeholder: t('travelPlanning.expenses.filters.categoryPlaceholder'),
+      type: 'select',
     },
     {
       label: t('travelPlanning.expenses.filters.date'),
@@ -110,6 +115,7 @@ export function useExpensesTable(expenses: ExpenseDto[], travelPlanId: number) {
     {
       dataIndex: 'category',
       key: 'category',
+      render: (value: ExpenseDto['category']) => getExpenseCategoryLabel(value),
       title: t('travelPlanning.expenses.fields.category'),
     },
     {

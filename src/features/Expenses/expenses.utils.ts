@@ -20,7 +20,7 @@ export function filterExpenses(expenses: ExpenseDto[], filters: ExpenseFilters) 
     const minAmount = parseOptionalNumber(filters.minAmount)
     const maxAmount = parseOptionalNumber(filters.maxAmount)
     const matchesName = includesSearchValue(expense.name, filters.name)
-    const matchesCategory = includesSearchValue(expense.category, filters.category)
+    const matchesCategory = !filters.category || expense.category === filters.category
     const matchesDate = !filters.date || expense.date.slice(0, 10) === filters.date
     const matchesMinAmount = minAmount === undefined || expense.amount >= minAmount
     const matchesMaxAmount = maxAmount === undefined || expense.amount <= maxAmount

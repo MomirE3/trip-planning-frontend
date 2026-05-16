@@ -19,7 +19,7 @@ export function filterActivities(activities: ActivityDto[], filters: ActivityFil
     const matchesName = includesSearchValue(activity.name, filters.name)
     const matchesDate = !filters.date || activity.time.slice(0, 10) === filters.date
     const matchesLocation = includesSearchValue(activity.location, filters.location)
-    const matchesStatus = includesSearchValue(activity.status, filters.status)
+    const matchesStatus = !filters.status || activity.status === filters.status
 
     return matchesName && matchesDate && matchesLocation && matchesStatus
   })

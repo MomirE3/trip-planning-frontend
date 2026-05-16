@@ -15,6 +15,7 @@ import {
 } from './activities.service'
 import type { ActivityDto, ActivityFilters, ActivityFormValues } from './activities.types'
 import { buildActivityDto, emptyActivityFilters, filterActivities } from './activities.utils'
+import { useActivityStatusLabel, useActivityStatusOptions } from './useActivityStatusOptions'
 
 export function useActivitiesTable(activities: ActivityDto[], travelPlanId: number) {
   const { t } = useTranslation()
@@ -24,6 +25,8 @@ export function useActivitiesTable(activities: ActivityDto[], travelPlanId: numb
   const [createActivity, { isLoading: isCreating }] = useCreateActivityMutation()
   const [updateActivity, { isLoading: isUpdating }] = useUpdateActivityMutation()
   const [deleteActivity, { isLoading: isDeleting }] = useDeleteActivityMutation()
+  const statusOptions = useActivityStatusOptions()
+  const getActivityStatusLabel = useActivityStatusLabel()
 
   const filterFields: BaseTableFilterField<ActivityFilters>[] = [
     {
@@ -44,7 +47,9 @@ export function useActivitiesTable(activities: ActivityDto[], travelPlanId: numb
     {
       label: t('travelPlanning.activities.filters.status'),
       name: 'status',
+      options: statusOptions,
       placeholder: t('travelPlanning.activities.filters.statusPlaceholder'),
+      type: 'select',
     },
   ]
 
@@ -126,6 +131,7 @@ export function useActivitiesTable(activities: ActivityDto[], travelPlanId: numb
     {
       dataIndex: 'status',
       key: 'status',
+      render: (value: ActivityDto['status']) => getActivityStatusLabel(value),
       title: t('travelPlanning.activities.fields.status'),
     },
     {

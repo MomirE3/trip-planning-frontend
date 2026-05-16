@@ -1,11 +1,17 @@
 import type { HTMLInputTypeAttribute } from 'react'
 
+export interface BaseTableFilterOption {
+  label: string
+  value: string
+}
+
 export interface BaseTableFilterField<TValues extends object> {
   inputMode?: 'search' | 'text' | 'email' | 'tel' | 'url' | 'none' | 'numeric' | 'decimal'
   label: string
   name: Extract<keyof TValues, string>
+  options?: BaseTableFilterOption[]
   placeholder?: string
-  type?: HTMLInputTypeAttribute
+  type?: HTMLInputTypeAttribute | 'select'
 }
 
 export interface BaseTableFiltersProps<TValues extends object> {

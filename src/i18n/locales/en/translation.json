@@ -197,7 +197,7 @@
         "location": "Location",
         "locationPlaceholder": "Search locations",
         "status": "Status",
-        "statusPlaceholder": "Search statuses"
+        "statusPlaceholder": "All statuses"
       },
       "messages": {
         "created": "Activity added.",
@@ -209,7 +209,7 @@
         "name": "City walking tour",
         "description": "Guided tour through the old town",
         "location": "Gothic Quarter",
-        "status": "Planned"
+        "status": "Select status"
       },
       "validation": {
         "name": "Activity name is required.",
@@ -238,7 +238,7 @@
         "name": "Name",
         "namePlaceholder": "Search expenses",
         "category": "Category",
-        "categoryPlaceholder": "Search categories",
+        "categoryPlaceholder": "All categories",
         "date": "Date",
         "minAmount": "Min amount",
         "maxAmount": "Max amount"
@@ -251,7 +251,7 @@
       },
       "placeholders": {
         "name": "Hotel reservation",
-        "category": "Accommodation"
+        "category": "Select category"
       },
       "validation": {
         "name": "Expense name is required.",
@@ -259,6 +259,32 @@
         "amountPositive": "Amount cannot be negative.",
         "category": "Category is required.",
         "date": "Expense date is required."
+      }
+    },
+    "enums": {
+      "activityStatus": {
+        "Planned": "Planned",
+        "Reserved": "Reserved",
+        "Done": "Done",
+        "Cancelled": "Cancelled"
+      },
+      "expenseCategory": {
+        "Food": "Food",
+        "Transport": "Transport",
+        "Accommodation": "Accommodation",
+        "Entertainment": "Entertainment",
+        "Shopping": "Shopping",
+        "Health": "Health",
+        "Insurance": "Insurance",
+        "Flights": "Flights",
+        "Taxi": "Taxi",
+        "PublicTransport": "Public transport",
+        "Fuel": "Fuel",
+        "Parking": "Parking",
+        "Tours": "Tours",
+        "Activities": "Activities",
+        "Souvenirs": "Souvenirs",
+        "Other": "Other"
       }
     }
   }

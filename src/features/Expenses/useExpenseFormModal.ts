@@ -16,9 +16,9 @@ export function useExpenseFormModal(open: boolean, initialValues?: ExpenseDto | 
 
     form.setFieldsValue({
       amount: initialValues?.amount ?? 0,
-      category: initialValues?.category ?? '',
       date: toDateInputValue(initialValues?.date),
       name: initialValues?.name ?? '',
+      ...(initialValues ? { category: initialValues.category } : {}),
     })
   }, [form, initialValues, open])
 

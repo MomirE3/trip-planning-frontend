@@ -1,10 +1,12 @@
+import type { ActivityStatus } from '../../shared/constants/activityStatus'
+
 export interface ActivityDto {
   id: number
   description: string
   estimatedCost: number
   location: string
   name: string
-  status: string
+  status: ActivityStatus
   time: string
   travelPlanId: number
 }
@@ -14,7 +16,7 @@ export interface ActivityFormValues {
   estimatedCost: number
   location: string
   name: string
-  status: string
+  status: ActivityStatus
   time: string
 }
 
